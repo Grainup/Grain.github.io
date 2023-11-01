@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>同程旅行_一面_面经</title>
+    <link href="/2023/11/01/%E5%90%8C%E7%A8%8B%E6%97%85%E8%A1%8C_%E4%B8%80%E9%9D%A2_%E9%9D%A2%E7%BB%8F/"/>
+    <url>/2023/11/01/%E5%90%8C%E7%A8%8B%E6%97%85%E8%A1%8C_%E4%B8%80%E9%9D%A2_%E9%9D%A2%E7%BB%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一面-10-24-48min"><a href="#一面-10-24-48min" class="headerlink" title="一面 10.24 (48min)"></a>一面 10.24 (48min)</h1><ul><li><p>对于软件测试的了解</p></li><li><p>质量保障(QA)和软件测试有什么区别没有？</p><ul><li><p><strong>一、软件测试是一个过程，而软件质量保证是一个方法论。</strong></p><p>软件测试是通过执行软件的各种测试活动来检测和发现软件缺陷，例如单元测试、集成测试、系统测试等等。软件质量保障是一种方法论，它涉及管理、规划、监督和控制软件开发过程的各个方面，以确保软件产品的质量。</p></li><li><p><strong>二、软件测试着眼于软件产品的缺陷，而软件质量保证则关注软件产品的质量。</strong></p><p>软件测试是针对软件中的缺陷和错误进行的活动，例如逻辑错误、设计问题、性能问题等。软件质量保证是确保软件产品符合质量标准和用户需求的过程，包括软件设计、开发、测试、部署和维护。</p></li><li><p><strong>三、软件测试是一项技术任务，而软件质量保证是一项管理任务。</strong></p><p>软件测试需要技术人员使用各种测试工具和技术来发现和修复软件缺陷。</p><p>而软件质量保证需要管理人员制定和执行质量计划、制定和实施质量标准、指导和培训开发人员等。</p></li></ul></li><li><p>软件开发的一个整体流程</p></li><li><p>测试用例包含哪几项</p></li><li><p>购物车，测试用例</p></li><li><p>fiddler抓包原理</p></li><li><p>fiddler是否可以抓包安卓的https请求？（不可以的）</p></li><li><p>python：一个列表中嵌套字典，字典中包含名字和分数，现在需要按照分数对该列表进行排序，该怎么实现</p></li><li><p>装饰器是什么</p></li><li><p>map(), filter()和reduce()</p></li><li><p>PO模式的实现</p></li><li><p>Selenium的元素定位方法</p></li><li><p>查询所有科目成绩大于60分的学生姓名</p><ul><li><strong>select name from test_a group by name having min(scores)&gt;60;</strong></li></ul></li><li><p>http协议报文、请求方式、响应状态码</p></li><li><p>http头有哪些常见字段</p></li><li><p>接口测试测试用例从哪些方面考虑，例如登录接口的测试用例如何编写</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>秋招面经</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面经</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>二叉树</title>
     <link href="/2023/09/17/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <url>/2023/09/17/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
