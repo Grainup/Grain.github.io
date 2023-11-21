@@ -18,32 +18,22 @@
   <meta name="author" content="Grain">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第一个Django项目pycharm创建一个Django项目，项目文件目录如下： 12345678day01&#x2F; # 根目录    manage.py 		# Django命令行工具    day01&#x2F; 			# 项目配置目录        __init__.py # 空文件，告诉python这个目录是python包        settings.py # 项目配置文件        urls.p">
+    <meta name="description" content="一面 11.1 （25min） 自我介绍  项目介绍  购物车测试用例设计  有做过性能测试吗  数据库去重的命令（distinct、group by）  模糊匹配的语句包括（%，_）  %代表任意多个字符 _代表任意一个字符   浏览器键入网站后经历了哪些步骤  OSI七层模型有哪些组成  链表、栈、哈希表他们的特性以及应用场景  索引类型、使用的存储结构（B+树）  测试的基本流程  在回归测">
 <meta property="og:type" content="article">
-<meta property="og:title" content="01.django_学习day01">
-<meta property="og:url" content="https://github.com/Grainup/Grain.github.io.git/2023/11/20/01-django%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:title" content="05.TCL格创_一面">
+<meta property="og:url" content="https://github.com/Grainup/Grain.github.io.git/2023/11/02/%E9%9D%A2%E7%BB%8F/05.TCL%E6%A0%BC%E5%88%9B_%E4%B8%80%E9%9D%A2/index.html">
 <meta property="og:site_name" content="Grain&#39;s Blog">
-<meta property="og:description" content="第一个Django项目pycharm创建一个Django项目，项目文件目录如下： 12345678day01&#x2F; # 根目录    manage.py 		# Django命令行工具    day01&#x2F; 			# 项目配置目录        __init__.py # 空文件，告诉python这个目录是python包        settings.py # 项目配置文件        urls.p">
+<meta property="og:description" content="一面 11.1 （25min） 自我介绍  项目介绍  购物车测试用例设计  有做过性能测试吗  数据库去重的命令（distinct、group by）  模糊匹配的语句包括（%，_）  %代表任意多个字符 _代表任意一个字符   浏览器键入网站后经历了哪些步骤  OSI七层模型有哪些组成  链表、栈、哈希表他们的特性以及应用场景  索引类型、使用的存储结构（B+树）  测试的基本流程  在回归测">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233846.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233859.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233909.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233916.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233924.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233929.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233934.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233939.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233944.png">
-<meta property="article:published_time" content="2023-11-20T09:20:34.642Z">
-<meta property="article:modified_time" content="2023-11-20T15:39:50.461Z">
+<meta property="article:published_time" content="2023-11-02T03:21:30.507Z">
+<meta property="article:modified_time" content="2023-11-02T03:25:12.375Z">
 <meta property="article:author" content="Grain">
-<meta property="article:tag" content="Django">
+<meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233846.png">
   
   
   
-  <title>01.django_学习day01 - Grain&#39;s Blog</title>
+  <title>05.TCL格创_一面 - Grain&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="01.django_学习day01"></span>
+            <span id="subtitle" data-typed-text="05.TCL格创_一面"></span>
           
         </div>
 
@@ -220,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-20 17:20" pubdate>
-          2023年11月20日 下午
+        <time datetime="2023-11-02 11:21" pubdate>
+          2023年11月2日 上午
         </time>
       </span>
     
@@ -232,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          233 字
         
       </span>
     
@@ -243,7 +233,7 @@
         
         
         
-          19 分钟
+          2 分钟
         
       </span>
     
@@ -280,71 +270,45 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">01.django_学习day01</h1>
+            <h1 id="seo-header">05.TCL格创_一面</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="第一个Django项目"><a href="#第一个Django项目" class="headerlink" title="第一个Django项目"></a>第一个Django项目</h1><p>pycharm创建一个Django项目，项目文件目录如下：</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs 1c">day01/ <span class="hljs-meta"># 根目录</span><br>    manage.py 		<span class="hljs-meta"># Django命令行工具</span><br>    day01/ 			<span class="hljs-meta"># 项目配置目录</span><br>        __init__.py <span class="hljs-meta"># 空文件，告诉python这个目录是python包</span><br>        settings.py <span class="hljs-meta"># 项目配置文件</span><br>        urls.py 	<span class="hljs-meta"># 项目所有urls声明汇总</span><br>        asgi.py 	<span class="hljs-meta"># ASGI服务器的入口文件</span><br>        wsgi.py 	<span class="hljs-meta"># WSGI服务器的入口文件</span><br></code></pre></td></tr></table></figure>
-
+                <h1 id="一面-11-1-（25min）"><a href="#一面-11-1-（25min）" class="headerlink" title="一面 11.1 （25min）"></a>一面 11.1 （25min）</h1><ul>
+<li><p>自我介绍</p>
+</li>
+<li><p>项目介绍</p>
+</li>
+<li><p>购物车测试用例设计</p>
+</li>
+<li><p>有做过性能测试吗</p>
+</li>
+<li><p>数据库去重的命令（distinct、group by）</p>
+</li>
+<li><p>模糊匹配的语句包括（%，_）</p>
 <ul>
-<li>pycharm创建项目会默认穿件一个templates文件夹【需要删除】</li>
-<li>在settings.py中【删除】“DIRS”:[<strong>os.path.join(BASE_DIR, ‘templates’)</strong>] ——&gt; “DIRS”:[]</li>
+<li>%代表任意多个字符</li>
+<li>_代表任意一个字符</li>
 </ul>
-<h3 id="1、终端运行"><a href="#1、终端运行" class="headerlink" title="1、终端运行"></a>1、终端运行</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs py">python manage.py runserver<br></code></pre></td></tr></table></figure>
-
-<p><strong>更换端口：</strong></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs py">python manage.py runserver <span class="hljs-number">8080</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="2、创建应用APP"><a href="#2、创建应用APP" class="headerlink" title="2、创建应用APP"></a>2、创建应用APP</h3><p>**1-**在manage.py同级目录下创建新应用：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs py">python manage.py startapp demo<br></code></pre></td></tr></table></figure>
-
-<p>这将会创建一个 <code>demo</code> 目录，它的目录结构大致如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs stylus">demo/<br>    __init__<span class="hljs-selector-class">.py</span><br>    admin<span class="hljs-selector-class">.py</span>		【固定不用动】Django默认提供了admin后台管理<br>    apps<span class="hljs-selector-class">.py</span>			【固定不用动】app启动类<br>    migrations/		【固定不用动】数据库变更记录<br>        __init__<span class="hljs-selector-class">.py</span><br>    models<span class="hljs-selector-class">.py</span>		【重要】 对数据库操作<br>    tests<span class="hljs-selector-class">.py</span>		【固定不用动】单元测试的<br>    views<span class="hljs-selector-class">.py</span>		【重要】 视图函数<br></code></pre></td></tr></table></figure>
-
-<p>**2-**在项目配置文件<code>day01\settings.py</code>的INSTALLED_APPS中加入demo</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">INSTALLED_APPS = [<br>    <span class="hljs-string">&#x27;django.contrib.admin&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.auth&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.contenttypes&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.sessions&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.messages&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.staticfiles&#x27;</span>,<br>    <span class="hljs-string">&#x27;demo&#x27;</span>, <span class="hljs-comment"># 注册app</span><br>]<br></code></pre></td></tr></table></figure>
-
-<p>**3-**然后编辑<code>day01/urls.py</code>, 把demo应用的urls也加入到项目的urls中去，如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">urlpatterns = [<br>    path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin.site.urls),<br>    path(<span class="hljs-string">&#x27;&#x27;</span>, include(<span class="hljs-string">&#x27;demo.urls&#x27;</span>)) <span class="hljs-comment"># 加入app对应urls</span><br>]<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233846.png" srcset="/img/loading.gif" lazyload alt="image-20231120101528546" style="zoom:80%;" />
-
-<h3 id="3、编写视图函数和URL配置"><a href="#3、编写视图函数和URL配置" class="headerlink" title="3、编写视图函数和URL配置"></a>3、编写视图函数和URL配置</h3><p>**1-**编辑<code>demo/views.py</code>, 新增一个名为index的视图函数。每个视图函数的第一个默认参数都必需是<code>request</code>, 它是一个全局变量。Django把每个用户请求封装成了<code>request</code>对象，它包含里当前请求的所有信息，比如请求路径<code>request.path</code>, 当前用户<code>request.user</code>以及用户通过POST提交的数据<code>request.POST</code>。</p>
-<p>index视图函数通过调用<code>HttpReponse</code>方法打印输出当前的请求路径<code>request.path</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># demo/views.py</span><br><span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">index</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;Hello, world. You&#x27;re at the polls index.&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233859.png" srcset="/img/loading.gif" lazyload alt="image-20231120101758204" style="zoom:75%;" />
-
-<p>**2-**使用<code> python manage.py runserver</code>重启服务器，打开<a target="_blank" rel="noopener" href="http://127.0.0.1:8000/index/%E4%BC%9A%E6%98%BE%E7%A4%BA%22Hello">http://127.0.0.1:8000/index/会显示&quot;Hello</a>, world. You’re at the polls index.”</p>
-<h3 id="4、templates模板"><a href="#4、templates模板" class="headerlink" title="4、templates模板"></a>4、templates模板</h3><p>返回html页面需要使用render</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 默认去当前目录下的templates文件夹中寻找对应html文件（根据app注册顺序找 ）</span><br>  <span class="hljs-keyword">return</span> render(request,<span class="hljs-string">&quot;XXX.html&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-<h3 id="5、静态文件"><a href="#5、静态文件" class="headerlink" title="5、静态文件"></a>5、静态文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs -">-static<br>	-css	【存放CSS样式】<br>	-img 	【存放图片】<br>	-js		【存放js样式】<br></code></pre></td></tr></table></figure>
-
-<h4 id="加载静态文件"><a href="#加载静态文件" class="headerlink" title="加载静态文件"></a>加载静态文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># req.html</span><br>&#123;% load static %&#125;	<span class="hljs-comment"># 加载</span><br></code></pre></td></tr></table></figure>
-
-<img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233909.png" srcset="/img/loading.gif" lazyload alt="image-20231120110846092" style="zoom:80%;" />
-
-<h2 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h2><h3 id="1、列表"><a href="#1、列表" class="headerlink" title="1、列表"></a>1、列表</h3><p>在render中添加一个字典，引入变量。读取列表，需要通过. 去索引</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233916.png" srcset="/img/loading.gif" lazyload alt="image-20231120114142547"></p>
-<h3 id="2、for语法，进行循环读取"><a href="#2、for语法，进行循环读取" class="headerlink" title="2、for语法，进行循环读取"></a>2、for语法，进行循环读取</h3><p><img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233924.png" srcset="/img/loading.gif" lazyload alt="image-20231120155003475"></p>
-<h3 id="3、读取字典"><a href="#3、读取字典" class="headerlink" title="3、读取字典"></a><strong>3、读取字典</strong></h3><ul>
-<li>可以根据字典的键去获取值：、</li>
-<li>或者for循环键</li>
+</li>
+<li><p>浏览器键入网站后经历了哪些步骤</p>
+</li>
+<li><p>OSI七层模型有哪些组成</p>
+</li>
+<li><p><strong>链表、栈、哈希表他们的特性以及应用场景</strong></p>
+</li>
+<li><p><strong>索引类型、使用的存储结构（B+树）</strong></p>
+</li>
+<li><p>测试的基本流程</p>
+</li>
+<li><p>在回归测试中，如何进行测试保证问题已经解决并且不会引发其他代码问题或业务功能问题？</p>
+</li>
+<li><p>有做过购物车下单并发测试吗</p>
+</li>
+<li><p>postman压测有做过吗</p>
+</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233929.png" srcset="/img/loading.gif" lazyload alt="image-20231120155818311" style="zoom:80%;" />
-
-<h3 id="4、判断语句if"><a href="#4、判断语句if" class="headerlink" title="4、判断语句if"></a>4、判断语句if</h3><p><img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233934.png" srcset="/img/loading.gif" lazyload alt="image-20231120160600216"></p>
-<img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233939.png" srcset="/img/loading.gif" lazyload alt="image-20231120160954459" style="zoom:80%;" />
-
-<h2 id="请求和响应"><a href="#请求和响应" class="headerlink" title="请求和响应"></a>请求和响应</h2><p><strong>响应方式：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;返回请求&quot;</span>)	<span class="hljs-comment"># 将字符串内容返回给请求者</span><br><span class="hljs-keyword">return</span> render(request,<span class="hljs-string">&#x27;xxx.html&#x27;</span>,&#123;<span class="hljs-string">&quot;n1&quot;</span>:name&#125;)	<span class="hljs-comment">#读取html的内容+渲染(替换)--&gt;字符串，返回给用户浏览器</span><br><br><span class="hljs-comment"># 重定向</span><br><span class="hljs-keyword">return</span> redirect(<span class="hljs-string">&quot;https://www.baidu.com&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs django"><span class="language-xml">避免Django表单提交出现错误，需要在form中加入语句 &quot;</span><span class="hljs-template-tag">&#123;% <span class="hljs-name"><span class="hljs-name">csrf_token</span></span> %&#125;</span><span class="language-xml">&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/Grainup/note_pic/img/20231120233944.png" srcset="/img/loading.gif" lazyload alt="image-20231120170840935"></p>
 
                 
               </div>
@@ -363,7 +327,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Django%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Django学习</a>
+  <a href="/categories/%E7%A7%8B%E6%8B%9B%E9%9D%A2%E7%BB%8F/" class="category-chain-item">秋招面经</a>
   
   
 
@@ -378,7 +342,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Django/" class="print-no-link">#Django</a>
+        <a href="/tags/%E9%9D%A2%E7%BB%8F/" class="print-no-link">#面经</a>
       
     </div>
   
@@ -390,8 +354,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>01.django_学习day01</div>
-      <div>https://github.com/Grainup/Grain.github.io.git/2023/11/20/01-django第一个项目/</div>
+      <div>05.TCL格创_一面</div>
+      <div>https://github.com/Grainup/Grain.github.io.git/2023/11/02/面经/05.TCL格创_一面/</div>
     </div>
     <div class="license-meta">
       
@@ -403,7 +367,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月20日</div>
+          <div>2023年11月2日</div>
         </div>
       
       
@@ -435,12 +399,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/11/02/%E9%9D%A2%E7%BB%8F/04.%E5%8A%9B%E7%BB%B4_%E4%B8%80%E9%9D%A2+%E4%BA%8C%E9%9D%A2/" title="04.力维_一面+二面">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">04.力维_一面+二面</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/02/01.%E9%87%91%E8%9D%B6_%E4%B8%80%E9%9D%A2_%E9%9D%A2%E7%BB%8F/" title="01.金蝶_一面_面经">
-                        <span class="hidden-mobile">01.金蝶_一面_面经</span>
+                      <a href="/2023/11/02/%E9%9D%A2%E7%BB%8F/06.%E5%AE%87%E8%A7%86%E7%A7%91%E6%8A%80_%E4%B8%80%E9%9D%A2/" title="06.宇视科技_一面">
+                        <span class="hidden-mobile">06.宇视科技_一面</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
