@@ -29,8 +29,9 @@
 <meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/cd3640e44f1d6f14047adde28ff894fd.png">
 <meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/d4a11b32b4726bb11b8a78a4c006b8b5.png">
 <meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/1467098d0465dbc6ec3e4ab6c18daa83.png">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/6ce885333375433e7e602e76a53d82d6.png">
 <meta property="article:published_time" content="2023-11-24T09:06:02.446Z">
-<meta property="article:modified_time" content="2023-11-24T09:05:33.001Z">
+<meta property="article:modified_time" content="2023-11-25T02:56:56.631Z">
 <meta property="article:author" content="Grain">
 <meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.2k 字
+          6.4k 字
         
       </span>
     
@@ -238,7 +239,7 @@
         
         
         
-          52 分钟
+          54 分钟
         
       </span>
     
@@ -344,6 +345,20 @@
 <li><p>错误验证</p>
 <img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/1467098d0465dbc6ec3e4ab6c18daa83.png" srcset="/img/loading.gif" lazyload alt="image-20231124170504488" style="zoom:80%;" /></li>
 </ul>
+<h2 id="4、编辑用户"><a href="#4、编辑用户" class="headerlink" title="4、编辑用户"></a>4、编辑用户</h2><ul>
+<li>点击编辑，跳转到编辑页面（将编辑行的ID携带过去）</li>
+<li>编辑页面（含有默认数据，根据ID获取并设置到页面中）</li>
+<li>提交<ul>
+<li>数据错误</li>
+<li>数据校验</li>
+<li>在数据库更新</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/6ce885333375433e7e602e76a53d82d6.png" srcset="/img/loading.gif" lazyload alt="image-20231125104104499"></p>
+<h2 id="5、删除用户"><a href="#5、删除用户" class="headerlink" title="5、删除用户"></a>5、删除用户</h2><p>设计逻辑和删除部门一样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">user_delete</span>(<span class="hljs-params">request,nid</span>):<br><br>    models.UserInfo.objects.<span class="hljs-built_in">filter</span>(<span class="hljs-built_in">id</span>=nid).delete()<br>    <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">&quot;/user/list/&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
