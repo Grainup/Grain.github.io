@@ -18,25 +18,22 @@
   <meta name="author" content="Grain">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1、认识复杂度等差数列求和，最终可以化成$$aN^2+bN+c$$因此，计算时间复杂度时，记作O(N^2) 常见的常数时间操作O(1) 常见的算术运算（+、-、*、&#x2F;、%等） 常见的位运算（&gt;&gt;、&gt;&gt;&gt;、&lt;&lt;、|、&amp;、^等） 赋值、比较、自增、自减操作 数组寻址操作  计算算法的时间复杂度时，需要将算法步骤拆分到常数时间操作，再去计算。">
+    <meta name="description" content="python中的位运算 左移 &lt;&lt;：位运算左移一位 &lt;&lt;1 相当于乘以二 右移 &gt;&gt;：位运算左移一位 &gt;&gt;1 相当于除以二 按位或|：同时为0才为0，其余为1 按位与&amp;：同时为1才为1，其余为0 异或 ^ ：相同为0，不同为1  一、 模板代码1. 仅剩二进制最低位1，其余置0：x&amp;-x 考虑数 x &#x3D; 100010 x取反">
 <meta property="og:type" content="article">
-<meta property="og:title" content="01-第一节-认识复杂度、对数器、二分法">
-<meta property="og:url" content="https://github.com/Grainup/Grain.github.io.git/2023/11/22/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/01-%E7%AC%AC%E4%B8%80%E8%8A%82-%E8%AE%A4%E8%AF%86%E5%A4%8D%E6%9D%82%E5%BA%A6%E3%80%81%E5%AF%B9%E6%95%B0%E5%99%A8%E3%80%81%E4%BA%8C%E5%88%86%E6%B3%95/index.html">
+<meta property="og:title" content="02-位运算">
+<meta property="og:url" content="https://github.com/Grainup/Grain.github.io.git/2023/12/01/%E7%AE%97%E6%B3%95/02-%E4%BD%8D%E8%BF%90%E7%AE%97/index.html">
 <meta property="og:site_name" content="Grain&#39;s Blog">
-<meta property="og:description" content="1、认识复杂度等差数列求和，最终可以化成$$aN^2+bN+c$$因此，计算时间复杂度时，记作O(N^2) 常见的常数时间操作O(1) 常见的算术运算（+、-、*、&#x2F;、%等） 常见的位运算（&gt;&gt;、&gt;&gt;&gt;、&lt;&lt;、|、&amp;、^等） 赋值、比较、自增、自减操作 数组寻址操作  计算算法的时间复杂度时，需要将算法步骤拆分到常数时间操作，再去计算。">
+<meta property="og:description" content="python中的位运算 左移 &lt;&lt;：位运算左移一位 &lt;&lt;1 相当于乘以二 右移 &gt;&gt;：位运算左移一位 &gt;&gt;1 相当于除以二 按位或|：同时为0才为0，其余为1 按位与&amp;：同时为1才为1，其余为0 异或 ^ ：相同为0，不同为1  一、 模板代码1. 仅剩二进制最低位1，其余置0：x&amp;-x 考虑数 x &#x3D; 100010 x取反">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/a3e1447d698db74e90d7932446ef9bbc.png">
-<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/4fb29acc0a498ca57ca1e2eb65ade871.png">
-<meta property="article:published_time" content="2023-11-22T00:33:49.683Z">
-<meta property="article:modified_time" content="2023-11-25T03:18:13.444Z">
+<meta property="article:published_time" content="2023-12-01T08:45:35.584Z">
+<meta property="article:modified_time" content="2023-12-01T13:45:57.390Z">
 <meta property="article:author" content="Grain">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/a3e1447d698db74e90d7932446ef9bbc.png">
   
   
   
-  <title>01-第一节-认识复杂度、对数器、二分法 - Grain&#39;s Blog</title>
+  <title>02-位运算 - Grain&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="01-第一节-认识复杂度、对数器、二分法"></span>
+            <span id="subtitle" data-typed-text="02-位运算"></span>
           
         </div>
 
@@ -213,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-22 08:33" pubdate>
-          2023年11月22日 早上
+        <time datetime="2023-12-01 16:45" pubdate>
+          2023年12月1日 下午
         </time>
       </span>
     
@@ -225,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.8k 字
         
       </span>
     
@@ -236,7 +233,7 @@
         
         
         
-          10 分钟
+          16 分钟
         
       </span>
     
@@ -273,12 +270,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">01-第一节-认识复杂度、对数器、二分法</h1>
+            <h1 id="seo-header">02-位运算</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年11月25日 上午
+                    本文最后更新于：2023年12月1日 晚上
                   
                 
               </p>
@@ -286,32 +283,53 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1、认识复杂度"><a href="#1、认识复杂度" class="headerlink" title="1、认识复杂度"></a>1、认识复杂度</h2><p>等差数列求和，最终可以化成<br>$$<br>a<em>N^2+b</em>N+c<br>$$<br>因此，计算时间复杂度时，记作O(N^2)</p>
-<h3 id="常见的常数时间操作O-1"><a href="#常见的常数时间操作O-1" class="headerlink" title="常见的常数时间操作O(1)"></a>常见的常数时间操作O(1)</h3><ul>
-<li>常见的算术运算（+、-、*、&#x2F;、%等）</li>
-<li>常见的位运算（&gt;&gt;、&gt;&gt;&gt;、&lt;&lt;、|、&amp;、^等）</li>
-<li>赋值、比较、自增、自减操作</li>
-<li>数组寻址操作</li>
+                <h2 id="python中的位运算"><a href="#python中的位运算" class="headerlink" title="python中的位运算"></a>python中的位运算</h2><ul>
+<li>左移 &lt;&lt;：位运算左移一位 &lt;&lt;1 相当于乘以二</li>
+<li>右移 &gt;&gt;：位运算左移一位 &gt;&gt;1 相当于除以二</li>
+<li>按位或|：同时为0才为0，其余为1</li>
+<li>按位与&amp;：同时为1才为1，其余为0</li>
+<li>异或 ^ ：相同为0，不同为1</li>
 </ul>
-<p>计算算法的时间复杂度时，需要将算法步骤拆分到常数时间操作，再去计算。</p>
-<p>当时间复杂度指标相同时，比较两个算法，则使用常数量去分析。可以随机生成数据直接测。</p>
-<h2 id="2、对数器"><a href="#2、对数器" class="headerlink" title="2、对数器"></a>2、对数器</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/a3e1447d698db74e90d7932446ef9bbc.png" srcset="/img/loading.gif" lazyload alt="image-20231125111749845"></p>
-<p>通过大样本，对比两种方法，如果两种方法都能通过，则算法正确</p>
+<h3 id="一、-模板代码"><a href="#一、-模板代码" class="headerlink" title="一、 模板代码"></a>一、 模板代码</h3><h4 id="1-仅剩二进制最低位1，其余置0：x-x"><a href="#1-仅剩二进制最低位1，其余置0：x-x" class="headerlink" title="1. 仅剩二进制最低位1，其余置0：x&amp;-x"></a>1. 仅剩二进制最低位1，其余置0：x&amp;-x</h4><ul>
+<li>考虑数 x &#x3D; 100010</li>
+<li>x取反 ~x &#x3D; 011101</li>
+<li>~x+1即-x &#x3D; 011110</li>
+<li>发现x&amp;-x正好只剩下最低位的1</li>
+</ul>
+<h4 id="2-去掉最低位的1，保留其余位：x-x-1"><a href="#2-去掉最低位的1，保留其余位：x-x-1" class="headerlink" title="2. 去掉最低位的1，保留其余位：x &amp;&#x3D; (x-1)"></a>2. 去掉最低位的1，保留其余位：x &amp;&#x3D; (x-1)</h4><ul>
+<li>考虑数 x &#x3D; 100010</li>
+<li>则x-1 : x &#x3D; 100001</li>
+<li>x &amp;(x-1) &#x3D; 100000</li>
+</ul>
+<h4 id="3-把最低位的0置1其余保留-填上最低位的0-：x-x-1"><a href="#3-把最低位的0置1其余保留-填上最低位的0-：x-x-1" class="headerlink" title="3. 把最低位的0置1其余保留(填上最低位的0)：x |&#x3D; x+1"></a>3. 把最低位的0置1其余保留(填上最低位的0)：x |&#x3D; x+1</h4><ul>
+<li>考虑x &#x3D; 100101</li>
+<li>x+1 &#x3D; 100110</li>
+<li>x|(x+1) &#x3D; 100111</li>
+</ul>
+<h4 id="4-判断一个数x是不是2的次幂-x的因子只含2或1-x-0-and-x-x-1-0"><a href="#4-判断一个数x是不是2的次幂-x的因子只含2或1-x-0-and-x-x-1-0" class="headerlink" title="4. 判断一个数x是不是2的次幂(x的因子只含2或1) x&gt;0 and x&amp;(x-1) &#x3D;&#x3D; 0"></a>4. 判断一个数x是不是2的次幂(x的因子只含2或1) x&gt;0 and x&amp;(x-1) &#x3D;&#x3D; 0</h4><ul>
+<li>去掉lowbit就是0，那么说明这个数只含一个1。</li>
+</ul>
+<h4 id="5-判断一个数x是否含有相邻的1，x-1-x-0"><a href="#5-判断一个数x是否含有相邻的1，x-1-x-0" class="headerlink" title="5. 判断一个数x是否含有相邻的1，x&gt;&gt;1&amp;x&gt;0"></a>5. 判断一个数x是否含有相邻的1，x&gt;&gt;1&amp;x&gt;0</h4><ul>
+<li>把x右移一位，和自己与操作，如果还有1则说明有相邻的1。</li>
+</ul>
+<h4 id="6-判断一个数x是否含有相邻的0（不考虑前导0），x-x-1-return-x-x-1-0"><a href="#6-判断一个数x是否含有相邻的0（不考虑前导0），x-x-1-return-x-x-1-0" class="headerlink" title="6. 判断一个数x是否含有相邻的0（不考虑前导0），x|&#x3D;x&gt;&gt;1;return x&amp;(x+1)&gt;0"></a>6. 判断一个数x是否含有相邻的0（不考虑前导0），x|&#x3D;x&gt;&gt;1;return x&amp;(x+1)&gt;0</h4><ul>
+<li>把x右移一位，和自己与操作，如果还有1则说明有相邻的1。</li>
+</ul>
+<h4 id="7-判断一个数x的二进制里是不是全是1（不考虑前导0），x-x-1-0"><a href="#7-判断一个数x的二进制里是不是全是1（不考虑前导0），x-x-1-0" class="headerlink" title="7. 判断一个数x的二进制里是不是全是1（不考虑前导0），x&amp;(x+1)&#x3D;&#x3D;0"></a>7. 判断一个数x的二进制里是不是全是1（不考虑前导0），x&amp;(x+1)&#x3D;&#x3D;0</h4><ul>
+<li>x+&#x3D;1;return x&amp;(x-1)&#x3D;&#x3D;0即可。</li>
+<li>全1的数加上1一定是个2的次幂。</li>
+</ul>
+<h2 id="二、题目"><a href="#二、题目" class="headerlink" title="二、题目"></a>二、题目</h2><h3 id="136-只出现一次的数字"><a href="#136-只出现一次的数字" class="headerlink" title="136. 只出现一次的数字"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/single-number/">136. 只出现一次的数字</a></h3><p>思路：</p>
 <ul>
-<li><p>以测试冒泡算法为例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 冒泡排序,时间复杂度O(N^2)</span><br><span class="hljs-comment"># 使用对数器来验证算法</span><br><span class="hljs-keyword">import</span> random<br><br><span class="hljs-comment"># 冒泡排序算法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">bubble_sort</span>(<span class="hljs-params">alist</span>):<br>    n = <span class="hljs-built_in">len</span>(alist)<br>    <span class="hljs-keyword">while</span> n &gt; <span class="hljs-number">0</span>:<br>        newn = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n):<br>            <span class="hljs-keyword">if</span> alist[i - <span class="hljs-number">1</span>] &gt; alist[i]:<br>                alist[i - <span class="hljs-number">1</span>], alist[i] = alist[i], alist[i - <span class="hljs-number">1</span>]<br>                newn = i<br>        n = newn<br>    <span class="hljs-keyword">return</span> alist<br><br><span class="hljs-comment"># ----- 对数器 -----</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">num_test</span>(<span class="hljs-params">testTime, maxSize, maxValue</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    testTime：测试次数</span><br><span class="hljs-string">    maxSize：数据的长度</span><br><span class="hljs-string">    maxValue：数据的范围</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    succeed = <span class="hljs-literal">True</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(testTime):<br>        arr1 = [random.randint(-maxValue, maxValue) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(maxSize)]<br>        arr2 = arr1.copy()<br>        arr3 = arr1.copy()<br><br>        bubble_sort(arr2)<br>        arr3.sort()<br>        <span class="hljs-keyword">if</span> arr2 != arr3:<br>            succeed = <span class="hljs-literal">False</span><br>            <span class="hljs-built_in">print</span>(arr1)<br>            <span class="hljs-built_in">print</span>(arr2)<br>            <span class="hljs-built_in">print</span>(arr3)<br>            <span class="hljs-keyword">break</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;succeed&quot;</span> <span class="hljs-keyword">if</span> succeed <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;failed&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    num_test(<span class="hljs-number">1000</span>, <span class="hljs-number">10</span>, <span class="hljs-number">100</span>)<br></code></pre></td></tr></table></figure></li>
+<li>使用异或运算，设一个变量a &#x3D; 0，遍历异或数组的每个元素</li>
+<li>除了某个元素只出现一次以外，其余每个元素均出现两次。偶数次异或皆为0，最后只剩出现一次的数，就是答案</li>
 </ul>
-<h2 id="3、二分法"><a href="#3、二分法" class="headerlink" title="3、二分法"></a>3、二分法</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/4fb29acc0a498ca57ca1e2eb65ade871.png" srcset="/img/loading.gif" lazyload alt="image-20231125111801690"></p>
-<ul>
-<li>二分法取中位数时使用<code> mid = L+(R-L)/2</code>能防止溢出</li>
-<li>一个数<code>N/2 = N &gt;&gt; 1</code>，位移运算比算术运算快</li>
-</ul>
-<blockquote>
-<ul>
-<li>while left &lt;&#x3D; right时：right &#x3D; mid-1	# 左闭右闭区间</li>
-<li>while left &lt; right时：right &#x3D; mid         # 左闭右开区间</li>
-</ul>
-</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">singleNumber</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:<br>        ans = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> nums:<br>            ans ^= i<br>        <span class="hljs-keyword">return</span> ans<br></code></pre></td></tr></table></figure>
+
+<h3 id="137-只出现一次的数字-II"><a href="#137-只出现一次的数字-II" class="headerlink" title="137. 只出现一次的数字 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/single-number-ii/">137. 只出现一次的数字 II</a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">singleNumber</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:<br>        t = [<span class="hljs-number">0</span>]*<span class="hljs-number">32</span><br>        <span class="hljs-comment"># t[0]表示 0位置的1出现了几次</span><br>        <span class="hljs-comment"># t[1]表示 1位置的1出现了几次</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> nums:<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">32</span>):<br>                <span class="hljs-keyword">if</span> (i &gt;&gt; j) &amp; <span class="hljs-number">1</span>:	<span class="hljs-comment"># 如果i的第j位为1，则&amp;1 结果为1，累加t的该位置1的个数</span><br>                    t[j] += <span class="hljs-number">1</span><br>        ans = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">32</span>):<br>            <span class="hljs-keyword">if</span> t[i]%<span class="hljs-number">3</span>:	<span class="hljs-comment"># 如果t[i] % m != 0，则表示在该位置上为1的的数量不是m的整数倍，还包含k次出现的数</span><br>                ans |= (<span class="hljs-number">1</span>&lt;&lt;i)<br>        <span class="hljs-comment"># python 中当输出是负数时，会把32位有符号整型认为成无符号整型，就会报错，要对结果做如下修改：</span><br>        <span class="hljs-keyword">if</span> ans&gt; <span class="hljs-number">2</span>**<span class="hljs-number">31</span>-<span class="hljs-number">1</span>:<br>            ans -= <span class="hljs-number">2</span>**<span class="hljs-number">32</span> <br>        <span class="hljs-keyword">return</span> ans<br></code></pre></td></tr></table></figure>
+
+<h3 id="260-只出现一次的数字-III"><a href="#260-只出现一次的数字-III" class="headerlink" title="260. 只出现一次的数字 III"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/single-number-iii/">260. 只出现一次的数字 III</a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">singleNumber</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]:<br>        xor_result = <span class="hljs-number">0</span>	<span class="hljs-comment"># 设置一个变量来遍历异或</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> nums:<br>            xor_result ^= i<br>        <span class="hljs-comment"># 3.因为两个奇数次数a和b是两种数，所以遍历完以后xor_result = a ^ b,且xor_result != 0</span><br>        <span class="hljs-comment">#   因为a和b是不同的数 所以异或结果一定存在某一位上为1，则a和b在该位置一定是分别为1和0.</span><br>        <span class="hljs-comment"># 4.然后找到xor_result最右边的1</span><br>        right_one = xor_result &amp; (-xor_result)<br>		<br>     <span class="hljs-comment"># 现在用两个变量再去遍历异或，这就分为了两组，一组是该位置为1，另一组是为0，遍历完就能提取出这两个数。</span><br>        num1, num2 = <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> nums:<br>            <span class="hljs-keyword">if</span> (i &amp; right_one):<br>                num1 ^= i<br>            <span class="hljs-keyword">else</span>:<br>                num2 ^= i<br>        <span class="hljs-keyword">return</span> [num1,num2]<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -330,7 +348,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/" class="category-chain-item">马士兵算法体系班</a>
+  <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/" class="category-chain-item">力扣刷题</a>
   
   
 
@@ -357,8 +375,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>01-第一节-认识复杂度、对数器、二分法</div>
-      <div>https://github.com/Grainup/Grain.github.io.git/2023/11/22/马士兵算法体系班/01-第一节-认识复杂度、对数器、二分法/</div>
+      <div>02-位运算</div>
+      <div>https://github.com/Grainup/Grain.github.io.git/2023/12/01/算法/02-位运算/</div>
     </div>
     <div class="license-meta">
       
@@ -370,13 +388,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月22日</div>
+          <div>2023年12月1日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月25日</div>
+          <div>2023年12月1日</div>
         </div>
       
       
@@ -407,9 +425,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/22/Django/03-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-1/" title="03-项目开发-1_学习day03">
+                      <a href="/2023/12/03/Django/07-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-5-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81/" title="07-项目开发-5_学习day07-用户认证、图片验证">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">03-项目开发-1_学习day03</span>
+                        <span class="hidden-mobile">07-项目开发-5_学习day07-用户认证、图片验证</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -417,8 +435,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/21/Django/02-orm%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/" title="02-orm数据库连接_学习day02">
-                        <span class="hidden-mobile">02-orm数据库连接_学习day02</span>
+                      <a href="/2023/11/30/Django/06-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-4/" title="06-项目开发-4_学习day06">
+                        <span class="hidden-mobile">06-项目开发-4_学习day06</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
