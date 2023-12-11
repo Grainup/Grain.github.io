@@ -25,11 +25,14 @@
 <meta property="og:site_name" content="Grain&#39;s Blog">
 <meta property="og:description" content="Ajax请求目前浏览器向网站发送请求时：为URL和表单的形式提交。  GET POST  特点是：提交后页面刷新。 除此之外，可以基于Ajax向后台发送请求（异步请求）  依赖jQuery  编写ajax代码 1234567891011$.ajax(&amp;#123;    url:&quot;发送的地址&quot;,    type:&quot;get&quot;,    data:&amp;#123;">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/dcf408257b06db6471d3b46a3abd8f32.png">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/b743616ceb3f69d7e2b40fd32f993db8.png">
 <meta property="article:published_time" content="2023-12-05T09:03:36.757Z">
-<meta property="article:modified_time" content="2023-12-05T09:48:19.778Z">
+<meta property="article:modified_time" content="2023-12-06T13:06:22.710Z">
 <meta property="article:author" content="Grain">
 <meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/dcf408257b06db6471d3b46a3abd8f32.png">
   
   
   
@@ -222,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          684 字
+          1.5k 字
         
       </span>
     
@@ -233,7 +236,7 @@
         
         
         
-          6 分钟
+          13 分钟
         
       </span>
     
@@ -275,7 +278,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年12月5日下午5点48分
+                    本文最后更新于：2023年12月6日晚上9点06分
                   
                 
               </p>
@@ -301,6 +304,22 @@
 
 <h2 id="2、Ajax请求返回值一般是json格式"><a href="#2、Ajax请求返回值一般是json格式" class="headerlink" title="2、Ajax请求返回值一般是json格式"></a>2、Ajax请求返回值一般是json格式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.views.decorators.csrf <span class="hljs-keyword">import</span> csrf_exempt<br><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> HttpResponse<br><span class="hljs-keyword">from</span> json<br><br><span class="hljs-comment"># 在URL函数上方加上装饰器</span><br><span class="hljs-meta">@csrf_exempt</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">xxx</span>(<span class="hljs-params">request</span>):<br>    data_dic = &#123;<span class="hljs-string">&quot;status&quot;</span>:<span class="hljs-literal">True</span>, <span class="hljs-string">&quot;data&quot;</span>:[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]&#125;<br>    <span class="hljs-keyword">return</span> HttpResponse(json.dumps(data_dic))	<span class="hljs-comment"># json.dumps(data_dic)转成json</span><br></code></pre></td></tr></table></figure>
 
+<h2 id="3、案例"><a href="#3、案例" class="headerlink" title="3、案例"></a>3、案例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ajax案例</span><br><span class="hljs-keyword">from</span> django.views.decorators.csrf <span class="hljs-keyword">import</span> csrf_exempt<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">task_ajax_list</span>(<span class="hljs-params">request</span>):<br>    form = TaskModelForm()<br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;task_ajax_list.html&quot;</span>, &#123;<span class="hljs-string">&quot;form&quot;</span>: form&#125;)<br><br><br><span class="hljs-comment"># 用Ajax，post请求时。在URL函数上方加上装饰器</span><br><span class="hljs-meta">@csrf_exempt</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">task_ajax_add</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-comment"># 1.用户发送过来的数据做校验（ModelForm进行校验）</span><br>    form = TaskModelForm(data=request.POST)<br>    <span class="hljs-keyword">if</span> form.is_valid():<br>        form.save()<br>        data_dict = &#123;<span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-literal">True</span>, <span class="hljs-string">&quot;data&quot;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]&#125;<br>        <span class="hljs-keyword">return</span> HttpResponse(json.dumps(data_dict))<br>    <span class="hljs-comment"># 2. 如果出错，则后端返回错误信息</span><br>    data_dict = &#123;<span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-literal">False</span>, <span class="hljs-string">&quot;error&quot;</span>: form.errors&#125;<br>    <span class="hljs-keyword">return</span> HttpResponse(json.dumps(data_dict, ensure_ascii=<span class="hljs-literal">False</span>))<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>通过ajax提交form表单时，.serialize()方式会失效</p>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/dcf408257b06db6471d3b46a3abd8f32.png" srcset="/img/loading.gif" lazyload alt="image-20231206201433969"></p>
+<ul>
+<li><p>解决方法：创建Form对象，并将<code>processData</code>与<code>contentType</code>两个参数设置为false</p>
+<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/b743616ceb3f69d7e2b40fd32f993db8.png" srcset="/img/loading.gif" lazyload alt="image-20231206201646979" style="zoom:80%;" />
+</li>
+<li><p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34422681/article/details/127712777">https://blog.csdn.net/qq_34422681/article/details/127712777</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42774234/article/details/134443472">https://blog.csdn.net/qq_42774234/article/details/134443472</a></p>
+</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
@@ -365,7 +384,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月5日</div>
+          <div>2023年12月6日</div>
         </div>
       
       
@@ -395,6 +414,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/12/07/Django/09-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-7/" title="09-项目开发-7_学习day09">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">09-项目开发-7_学习day09</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
