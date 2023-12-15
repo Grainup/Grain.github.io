@@ -29,8 +29,13 @@
 <meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/5c7d3bbaf07c4934dee1dcb087fd9312.png">
 <meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/29ca991729ca2aeb95bb7820936c89d0.png">
 <meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/5f4daa5414355d3fc94c213efe0aabbd.jpg">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/2d80224a5f582f9702f0865fe0288d7d.png">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/ce36c4f96eceb922fb8630a015977680.png">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/4c840cc428ff15131d8701113ef3c28e.png">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/fadd09adf4829e29663152de0fbe7227.jpg">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/f37f3ca382d400b4e6b2d59dc5331240.png">
 <meta property="article:published_time" content="2023-12-14T01:45:07.709Z">
-<meta property="article:modified_time" content="2023-12-14T03:50:46.576Z">
+<meta property="article:modified_time" content="2023-12-15T02:51:16.720Z">
 <meta property="article:author" content="Grain">
 <meta property="article:tag" content="性能测试学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2.7k 字
         
       </span>
     
@@ -238,7 +243,7 @@
         
         
         
-          14 分钟
+          23 分钟
         
       </span>
     
@@ -280,7 +285,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年12月14日中午11点50分
+                    本文最后更新于：2023年12月15日上午10点51分
                   
                 
               </p>
@@ -416,6 +421,89 @@
 <ul>
 <li>注意：不包括 <strong>发送消息时前端页面的处理时间</strong> 和 <strong>收到消息后前端页面的渲染显示时间</strong></li>
 </ul>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/2d80224a5f582f9702f0865fe0288d7d.png" srcset="/img/loading.gif" lazyload alt="image-20231214115320201"></p>
+<p>总结：响应时间 &#x3D; 网络传输时间 + 服务器处理时间</p>
+<h2 id="2-并发数"><a href="#2-并发数" class="headerlink" title="2. 并发数"></a>2. 并发数</h2><p>并发(用户)数：某一时刻同时向服务器发送请求的用户数。</p>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/ce36c4f96eceb922fb8630a015977680.png" srcset="/img/loading.gif" lazyload alt="image-20231214115600973"></p>
+<h2 id="3-吞吐量"><a href="#3-吞吐量" class="headerlink" title="3. 吞吐量"></a>3. 吞吐量</h2><p>吞吐量：指的是<strong>单位时间内</strong>处理的客户端<strong>请求数量</strong>，直接体现软件系统的性能承载能力。</p>
+<ol>
+<li>从业务角度来看，吞吐量也可以用“业务数&#x2F;小时”、“业务数&#x2F;天”、“访问人数&#x2F;天”、“页面访问量&#x2F;天”来衡量</li>
+<li>从网络角度来看，还可以用“字节数&#x2F;小时”、“字节数&#x2F;天”等来衡量网络的流量</li>
+<li>从技术指标来看，可以用<strong>每秒事务数（TPS）</strong>和<strong>每秒查询数（QPS）</strong>来衡量服务器具体性能处理能力</li>
+</ol>
+<ul>
+<li><strong>QPS每秒查询数：</strong>控制服务器<strong>每秒</strong>处理的指定<strong>请求</strong>的数量，不同请求不一样</li>
+<li><strong>TPS每秒事务数：</strong>控制服务器<strong>每秒</strong>处理的<strong>事务请求</strong>的数量<ul>
+<li>事务：即业务，页面上的一次操作，可能对应一个请求&#x2F;多个请求</li>
+</ul>
+</li>
+<li><strong>QPS和TPS有什么关系？</strong><ul>
+<li>一个事务对应一个请求时： TPS &#x3D; QPS</li>
+<li>一个事务对应n个请求时： QPS &#x3D; n * TPS</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-点击数"><a href="#4-点击数" class="headerlink" title="4. 点击数"></a>4. 点击数</h2><p>指客户端向服务端发送请求时，所有的页面资源元素（如：图片、链接、框架css、js等）的请求总数量。</p>
+<ul>
+<li>只有web项目才有此指标</li>
+<li>点击数不是页面上的一次点击</li>
+</ul>
+<h2 id="5-错误率"><a href="#5-错误率" class="headerlink" title="5. 错误率"></a>5. 错误率</h2><p>错误率：指系统在<strong>负载情况</strong>下，失败业务的概率。错误率＝(失败业务数&#x2F;业务总数)*100%。</p>
+<ul>
+<li>大多系统都会要求错误率无限接近于0</li>
+<li>错误率是一个性能指标，不是功能上的随机bug</li>
+</ul>
+<h2 id="6-资源利用率"><a href="#6-资源利用率" class="headerlink" title="6. 资源利用率"></a>6. 资源利用率</h2><p>是指系统各种资源的使用情况，一般用“资源的使用量&#x2F;总的资源可用量×100%”形成资源利用率的数据。</p>
+<p>根据经验，资源指标通常要求：<br>（1）CPU不高于75%-85%<br>（2）内存不高于80%<br>（3）磁盘IO（速率）不高于90%<br>（4）网络（速率）不高于80%</p>
+<h1 id="4、性能测试的流程"><a href="#4、性能测试的流程" class="headerlink" title="4、性能测试的流程"></a>4、性能测试的流程</h1><ol>
+<li>性能测试需求分析：熟悉需求，获取性能需求指标</li>
+<li>性能测试计划及方案：测什么，谁来测、怎么测</li>
+<li>性能测试用例：用来验证系统是否符合需求</li>
+<li>测试脚本编写&#x2F;录制：建立测试环境、编写测试脚本、性能测试监控、执行测试脚本</li>
+<li>性能分析和调优：分析性能结果，针对性能bug调优</li>
+<li>性能测试报告总结</li>
+</ol>
+<h2 id="1-性能测试需求分析"><a href="#1-性能测试需求分析" class="headerlink" title="1. 性能测试需求分析"></a>1. 性能测试需求分析</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/4c840cc428ff15131d8701113ef3c28e.png" srcset="/img/loading.gif" lazyload alt="image-20231215103432087"></p>
+<h2 id="2-性能测试计划和方案"><a href="#2-性能测试计划和方案" class="headerlink" title="2. 性能测试计划和方案"></a>2. 性能测试计划和方案</h2><ul>
+<li><p>测什么</p>
+<ul>
+<li><p>项目背景</p>
+</li>
+<li><p>测试目的</p>
+</li>
+<li><p>测试范围</p>
+</li>
+</ul>
+</li>
+<li><p>谁来测</p>
+<ul>
+<li>进度与分工</li>
+<li>交付清单</li>
+</ul>
+</li>
+<li><p>怎么测</p>
+<ul>
+<li>测试策略</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-性能测试用例"><a href="#3-性能测试用例" class="headerlink" title="3. 性能测试用例"></a>3. 性能测试用例</h2><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/fadd09adf4829e29663152de0fbe7227.jpg" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+<h2 id="4-性能测试执行"><a href="#4-性能测试执行" class="headerlink" title="4. 性能测试执行"></a>4. 性能测试执行</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/f37f3ca382d400b4e6b2d59dc5331240.png" srcset="/img/loading.gif" lazyload alt="image-20231215104326524"></p>
+<h2 id="5-性能分析和调优"><a href="#5-性能分析和调优" class="headerlink" title="5. 性能分析和调优"></a>5. 性能分析和调优</h2><p>说明：性能测试分析人员经过对结果的分析以后，如果不符合性能需求，则会提出性能bug，然后由开发人员进行后续的调优。</p>
+<p>提示：</p>
+<ul>
+<li>调优 – 开发人员为主导，数据库管理员、系统管理员、网络管理员、性能测试分析人员配合进行</li>
+<li>验证 - 性能测试人员继续进行第二轮、第三轮……的测试，与以前的测试结果进行对比，从而确定经过调整以后系统的性能是否有提升</li>
+</ul>
+<h2 id="6-性能测试报告"><a href="#6-性能测试报告" class="headerlink" title="6. 性能测试报告"></a>6. 性能测试报告</h2><p>测试报告的主要内容：</p>
+<ul>
+<li>测试工作的经过回顾</li>
+<li>缺陷分析和调优</li>
+<li>风险评估</li>
+<li>性能测试结果</li>
+<li>测试工作总结与改进</li>
+</ul>
 
                 
               </div>
@@ -480,7 +568,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月14日</div>
+          <div>2023年12月15日</div>
         </div>
       
       
