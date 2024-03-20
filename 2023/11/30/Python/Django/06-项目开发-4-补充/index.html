@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>06-项目开发-4_学习day06 | Summer 自习室</title><meta name="author" content="Summer"><meta name="copyright" content="Summer"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="0- 上一节的补充1、时间插件引入CSS、js样式： 123456789101112131415161718&amp;#123;% block css %&amp;#125;    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&amp;#123;% static &amp;#x27;plugins&#x2F;bootstrap-datepicker&#x2F;css&#x2F;bootstrap-datepi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06-项目开发-4_学习day06">
+<meta property="og:url" content="https://github.com/Grainup/Grain.github.io.git/2023/11/30/Python/Django/06-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-4-%E8%A1%A5%E5%85%85/index.html">
+<meta property="og:site_name" content="Summer 自习室">
+<meta property="og:description" content="0- 上一节的补充1、时间插件引入CSS、js样式： 123456789101112131415161718&amp;#123;% block css %&amp;#125;    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&amp;#123;% static &amp;#x27;plugins&#x2F;bootstrap-datepicker&#x2F;css&#x2F;bootstrap-datepi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2024/03/6536ebb34b6d78350cba0b561c860a2f.png">
+<meta property="article:published_time" content="2023-11-30T09:57:20.396Z">
+<meta property="article:modified_time" content="2024-03-20T05:47:56.057Z">
+<meta property="article:author" content="Summer">
+<meta property="article:tag" content="Django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2024/03/6536ebb34b6d78350cba0b561c860a2f.png"><link rel="shortcut icon" href="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2024/03/6536ebb34b6d78350cba0b561c860a2f.png"><link rel="canonical" href="https://github.com/Grainup/Grain.github.io.git/2023/11/30/Python/Django/06-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-4-%E8%A1%A5%E5%85%85/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '06-项目开发-4_学习day06',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-20 13:47:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2024/03/6536ebb34b6d78350cba0b561c860a2f.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Summer 自习室"><img class="site-icon" src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2024/03/6536ebb34b6d78350cba0b561c860a2f.png"/><span class="site-name">Summer 自习室</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">06-项目开发-4_学习day06</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-30T09:57:20.396Z" title="发表于 2023-11-30 17:57:20">2023-11-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-20T05:47:56.057Z" title="更新于 2024-03-20 13:47:56">2024-03-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/Django%E5%AD%A6%E4%B9%A0/">Django学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="06-项目开发-4_学习day06"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="0-上一节的补充"><a href="#0-上一节的补充" class="headerlink" title="0- 上一节的补充"></a>0- 上一节的补充</h1><h2 id="1、时间插件"><a href="#1、时间插件" class="headerlink" title="1、时间插件"></a>1、时间插件</h2><p>引入CSS、js样式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block css %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% static &#x27;plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css&#x27; %&#125;&quot;</span>&gt;</span></span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;% block js %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;&#123;% static &#x27;plugins/bootstrap-datepicker/js/bootstrap-datepicker.js&#x27; %&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;&#123;% static &#x27;plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js&#x27; %&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      $(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">          $(<span class="string">&#x27;#id_creat_time&#x27;</span>).<span class="title function_">datepicker</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">              <span class="attr">format</span>: <span class="string">&#x27;yyyy-mm-dd&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">              <span class="attr">language</span>: <span class="string">&#x27;zh-CN&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">              <span class="attr">autoclose</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">          &#125;);</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/1e25acc80986b3d7de1ecf2258e014c6.png" alt="image-20231130103423168"></p>
+<h2 id="2、ModelForm与bootstrap"><a href="#2、ModelForm与bootstrap" class="headerlink" title="2、ModelForm与bootstrap"></a>2、ModelForm与bootstrap</h2><ul>
+<li><p>重新定义的init方法，批量设置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserModelForm</span>(forms.ModelForm):</span><br><span class="line">    <span class="comment"># 添加验证规则</span></span><br><span class="line">    name = forms.CharField(min_length=<span class="number">2</span>, label=<span class="string">&quot;姓名&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        model = models.UserInfo</span><br><span class="line">        fields = [<span class="string">&quot;name&quot;</span>, <span class="string">&quot;password&quot;</span>, <span class="string">&quot;age&quot;</span>, <span class="string">&quot;account&quot;</span>, <span class="string">&quot;creat_time&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;gender&quot;</span>, <span class="string">&quot;depart&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 循环找到所有的字段，给每个字段添加&quot;class&quot;:&quot;form-control&quot;样式</span></span><br><span class="line">        <span class="keyword">for</span> name, field <span class="keyword">in</span> self.fields.items():</span><br><span class="line">            field.widget.attrs = &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;form-control&quot;</span>, <span class="string">&quot;placeholder&quot;</span>: field.label&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p> 优化版本–自定义一个bootstrap 类，以后用到的时候，直接继承他</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BootStrapModelForm</span>(forms.ModelForm):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 循环找到所有的字段，给每个字段添加&quot;class&quot;:&quot;form-control&quot;样式</span></span><br><span class="line">        <span class="keyword">for</span> name, field <span class="keyword">in</span> self.fields.items():</span><br><span class="line">            <span class="comment"># 字段中有属性，保留原来的属性，没有属性，才增加</span></span><br><span class="line">            <span class="keyword">if</span> field.widget.attrs:</span><br><span class="line">                field.widget.attrs[<span class="string">&quot;class&quot;</span>] = <span class="string">&quot;form-control&quot;</span></span><br><span class="line">                field.widget.attrs[<span class="string">&quot;placeholder&quot;</span>] = field.label</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">            	field.widget.attrs = &#123;</span><br><span class="line">                    <span class="string">&quot;class&quot;</span>: <span class="string">&quot;form-control&quot;</span>, </span><br><span class="line">                    <span class="string">&quot;placeholder&quot;</span>: field.label&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserModelForm</span>(<span class="title class_ inherited__">BootStrapModelForm</span>):</span><br><span class="line">        <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        model = models.UserInfo</span><br><span class="line">        fields = [<span class="string">&quot;name&quot;</span>, <span class="string">&quot;password&quot;</span>, <span class="string">&quot;age&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-管理员操作"><a href="#1-管理员操作" class="headerlink" title="1-管理员操作"></a>1-管理员操作</h1><h2 id="1、管理员表创建"><a href="#1、管理员表创建" class="headerlink" title="1、管理员表创建"></a>1、管理员表创建</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Admin</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;管理员表&quot;&quot;&quot;</span></span><br><span class="line">    username = models.CharField(verbose_name=<span class="string">&#x27;用户名&#x27;</span>, max_length=<span class="number">32</span>)</span><br><span class="line">    password = models.CharField(verbose_name=<span class="string">&#x27;密码&#x27;</span>, max_length=<span class="number">64</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、新建管理员"><a href="#2、新建管理员" class="headerlink" title="2、新建管理员"></a>2、新建管理员</h2><ul>
+<li><p>新建了一个公共页面：change.html  用于所有新建任务的页面，只需要更改对应的标题就可以，不同的forms根据数据库字段设置</p>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/62afe2b3e05be634bede64888a053fdd.png" alt="image-20231130172021809"></p>
+</li>
+<li><p>添加确认密码字段</p>
+</li>
+<li><p>使用插件，让密码不是明文显示</p>
+</li>
+<li><p>定义钩子函数，验证确认密码与密码是否一致</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入报错模块</span></span><br><span class="line"><span class="keyword">from</span> django.core.exceptions <span class="keyword">import</span> ValidationError</span><br><span class="line"><span class="keyword">from</span> app01.utils.encrypt <span class="keyword">import</span> md5</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AdminModelForm</span>(<span class="title class_ inherited__">BootStrapModelForm</span>):</span><br><span class="line">    <span class="comment"># 增加确认密码字段</span></span><br><span class="line">    confirm_password = forms.CharField(</span><br><span class="line">        label=<span class="string">&quot;确认密码&quot;</span>,</span><br><span class="line">        widget=forms.PasswordInput(render_value=<span class="literal">True</span>)   <span class="comment"># render_value=True：当两次密码不一致时，提交过后任然保持数据在输入框，不会清空</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        model = models.Admin</span><br><span class="line">        <span class="comment"># fields = &quot;__all__&quot;  # 表示数据库中所有字段</span></span><br><span class="line">        fields = [<span class="string">&quot;username&quot;</span>, <span class="string">&quot;password&quot;</span>, <span class="string">&quot;confirm_password&quot;</span>]</span><br><span class="line">        widgets = &#123;</span><br><span class="line">            <span class="string">&quot;password&quot;</span>: forms.PasswordInput(render_value=<span class="literal">True</span>)  <span class="comment"># 插件，让密码不是明文显示</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 加密数据</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">clean_password</span>(<span class="params">self</span>):</span><br><span class="line">        pwd = self.cleaned_data.get(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> md5(pwd)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义一个钩子函数，验证确认密码与密码是否一致</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">clean_confirm_password</span>(<span class="params">self</span>):</span><br><span class="line">        pwd = self.cleaned_data.get(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">        confirm = md5(self.cleaned_data.get(<span class="string">&quot;confirm_password&quot;</span>))</span><br><span class="line">        <span class="keyword">if</span> confirm != pwd:</span><br><span class="line">            <span class="keyword">raise</span> ValidationError(<span class="string">&quot;密码不一致&quot;</span>)</span><br><span class="line">        <span class="comment"># 此处返回什么字段，以后保存到数据库就是什么字段的值</span></span><br><span class="line">        <span class="keyword">return</span> confirm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果两次输入密码不一致，在点击提交后，两个密码输入框的数据会清空。</span></span><br><span class="line"><span class="comment"># 如果不想清空，则在插件部分加上render_value=True</span></span><br><span class="line">widgets = &#123;<span class="string">&quot;password&quot;</span>: forms.PasswordInput(render_value=<span class="literal">True</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>md5加密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app01/utils/encrypt.py</span></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">md5</span>(<span class="params">data_string</span>):</span><br><span class="line"></span><br><span class="line">    obj = hashlib.md5(settings.SECRET_KEY.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    obj.update(data_string.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span> obj.hexdigest()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/1d222bf3992d6ab0a6ec29ad1e8e13b0.png" alt="image-20231130164802339" style="zoom:80%;" />
+
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/88d04facd812be63753551c7aeb3a13e.png" alt="image-20231130164729643"></p>
+<h2 id="3、编辑管理员"><a href="#3、编辑管理员" class="headerlink" title="3、编辑管理员"></a>3、编辑管理员</h2><ul>
+<li><p>增加form对编辑页面进行设置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AdminEditModelForm</span>(<span class="title class_ inherited__">BootStrapModelForm</span>):</span><br><span class="line">    <span class="comment"># 增加确认密码字段</span></span><br><span class="line">    confirm_password = forms.CharField(</span><br><span class="line">        label=<span class="string">&quot;确认密码&quot;</span>,</span><br><span class="line">        widget=forms.PasswordInput(render_value=<span class="literal">True</span>)  <span class="comment"># render_value=True：当两次密码不一致时，提交过后任然保持数据在输入框，不会清空</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        model = models.Admin</span><br><span class="line">        fields = [<span class="string">&quot;password&quot;</span>]</span><br><span class="line">        widgets = &#123;</span><br><span class="line">            <span class="string">&quot;password&quot;</span>: forms.PasswordInput(render_value=<span class="literal">True</span>)  <span class="comment"># 插件，让密码不是明文显示</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># 加密数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">clean_password</span>(<span class="params">self</span>):</span><br><span class="line">        pwd = self.cleaned_data.get(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> md5(pwd)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义一个钩子函数，验证确认密码与密码是否一致</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">clean_confirm_password</span>(<span class="params">self</span>):</span><br><span class="line">        pwd = self.cleaned_data.get(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">        confirm = md5(self.cleaned_data.get(<span class="string">&quot;confirm_password&quot;</span>))</span><br><span class="line">        <span class="keyword">if</span> confirm != pwd:</span><br><span class="line">            <span class="keyword">raise</span> ValidationError(<span class="string">&quot;密码不一致&quot;</span>)</span><br><span class="line">        <span class="comment"># 此处返回什么字段，以后保存到数据库就是什么字段的值</span></span><br><span class="line">        <span class="keyword">return</span> confirm</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">admin_edit</span>(<span class="params">request, nid</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;编辑管理员&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 获取id对象</span></span><br><span class="line">    row_obj = models.Admin.objects.<span class="built_in">filter</span>(<span class="built_in">id</span>=nid).first()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> row_obj:</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">&quot;/admin/list/&quot;</span>)  <span class="comment"># 如果对象不存在，可以返回列表页面，也可以返回自己定义的错误提示页面</span></span><br><span class="line"></span><br><span class="line">    title = <span class="string">&quot;编辑管理员&quot;</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&quot;GET&quot;</span>:</span><br><span class="line">        form = AdminEditModelForm(instance=row_obj)</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">&quot;change.html&quot;</span>, &#123;<span class="string">&quot;form&quot;</span>: form, <span class="string">&quot;title&quot;</span>: title&#125;)</span><br><span class="line"></span><br><span class="line">    form = AdminEditModelForm(data=request.POST, instance=row_obj)</span><br><span class="line">    <span class="keyword">if</span> form.is_valid():</span><br><span class="line">        form.save()</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">&quot;/admin/list/&quot;</span>)</span><br><span class="line">    <span class="comment"># 如果有错误信息</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;change.html&quot;</span>, &#123;<span class="string">&quot;form&quot;</span>: form, <span class="string">&quot;title&quot;</span>: title&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/9eaeebe82affa51a07d251b35872b285.png" alt="image-20231130172207651"></p>
+<ul>
+<li><p>加一个新功能：验证编辑后的密码是否与之前的密码一致，如果一致，则提示密码与之前一致修改失败。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 class AdminEditModelForm(BootStrapModelForm) 中</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">clean_password</span>(<span class="params">self</span>):</span><br><span class="line">        pwd = self.cleaned_data.get(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">        md5_pwd = md5(pwd)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 去数据库校验当前密码和新输入的密码是否一致</span></span><br><span class="line">        exists = models.Admin.objects.<span class="built_in">filter</span>(<span class="built_in">id</span>=self.instance.pk,password=md5_pwd).exists()</span><br><span class="line">        <span class="keyword">if</span> exists:</span><br><span class="line">            <span class="keyword">raise</span> ValidationError(<span class="string">&quot;密码与之前一致,修改失败!&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> md5_pwd</span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://github.com/Grainup/Grain.github.io.git">Summer</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://github.com/Grainup/Grain.github.io.git/2023/11/30/Python/Django/06-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-4-%E8%A1%A5%E5%85%85/">https://github.com/Grainup/Grain.github.io.git/2023/11/30/Python/Django/06-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-4-%E8%A1%A5%E5%85%85/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://github.com/Grainup/Grain.github.io.git" target="_blank">Summer 自习室</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Django/">Django</a></div><div class="post_share"><div class="social-share" data-image="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2024/03/6536ebb34b6d78350cba0b561c860a2f.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/29/Python/Django/05-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-3-%E6%A1%88%E4%BE%8B/" title="05-项目开发-3_学习day05"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">05-项目开发-3_学习day05</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode%E5%88%B7%E9%A2%98/%E4%BD%8D%E8%BF%90%E7%AE%97/" title="位运算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">位运算</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/20/Python/Django/01-django%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/" title="01.django_学习day01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-20</div><div class="title">01.django_学习day01</div></div></a></div><div><a href="/2023/11/21/Python/Django/02-orm%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/" title="02-orm数据库连接_学习day02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-21</div><div class="title">02-orm数据库连接_学习day02</div></div></a></div><div><a href="/2023/11/22/Python/Django/03-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-1-%E8%A1%A8%E8%AE%BE%E8%AE%A1/" title="03-项目开发-1_学习day03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-22</div><div class="title">03-项目开发-1_学习day03</div></div></a></div><div><a href="/2023/11/24/Python/Django/04-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-2-ModelForm/" title="04-项目开发-2_学习day04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-24</div><div class="title">04-项目开发-2_学习day04</div></div></a></div><div><a href="/2023/11/29/Python/Django/05-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-3-%E6%A1%88%E4%BE%8B/" title="05-项目开发-3_学习day05"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-29</div><div class="title">05-项目开发-3_学习day05</div></div></a></div><div><a href="/2023/12/03/Python/Django/07-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-5-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81/" title="07-项目开发-5_学习day07-用户认证、图片验证"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">07-项目开发-5_学习day07-用户认证、图片验证</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2024/03/6536ebb34b6d78350cba0b561c860a2f.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Summer</div><div class="author-info__description">记录学习日常</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" href="https://github.com/Grainup"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Stay foolish, Stay hungry</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-%E4%B8%8A%E4%B8%80%E8%8A%82%E7%9A%84%E8%A1%A5%E5%85%85"><span class="toc-number">1.</span> <span class="toc-text">0- 上一节的补充</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%97%B6%E9%97%B4%E6%8F%92%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">1、时间插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81ModelForm%E4%B8%8Ebootstrap"><span class="toc-number">1.2.</span> <span class="toc-text">2、ModelForm与bootstrap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%AE%A1%E7%90%86%E5%91%98%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">1-管理员操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%AE%A1%E7%90%86%E5%91%98%E8%A1%A8%E5%88%9B%E5%BB%BA"><span class="toc-number">2.1.</span> <span class="toc-text">1、管理员表创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%96%B0%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98"><span class="toc-number">2.2.</span> <span class="toc-text">2、新建管理员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%BC%96%E8%BE%91%E7%AE%A1%E7%90%86%E5%91%98"><span class="toc-number">2.3.</span> <span class="toc-text">3、编辑管理员</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode%E5%88%B7%E9%A2%98/%E5%8F%8C%E6%8C%87%E9%92%88/" title="双指针">双指针</a><time datetime="2024-03-11T10:36:19.262Z" title="发表于 2024-03-11 18:36:19">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode%E5%88%B7%E9%A2%98/%E4%BA%8C%E5%88%86%E6%B3%95/" title="二分法">二分法</a><time datetime="2024-03-11T00:39:57.449Z" title="发表于 2024-03-11 08:39:57">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/02/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/02_jmeter%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="02.jmeter工具使用1">02.jmeter工具使用1</a><time datetime="2024-01-02T01:11:57.454Z" title="发表于 2024-01-02 09:11:57">2024-01-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/15/Python/Django-drf/01-drf%E5%AD%A6%E4%B9%A0_1/" title="01.drf学习day01">01.drf学习day01</a><time datetime="2023-12-15T09:53:21.941Z" title="发表于 2023-12-15 17:53:21">2023-12-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/14/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/01_%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%90%86%E8%AE%BA/" title="01.性能测试的理论">01.性能测试的理论</a><time datetime="2023-12-14T01:45:07.709Z" title="发表于 2023-12-14 09:45:07">2023-12-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/11/Python/Django/10-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-8-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="10-项目开发-8-文件上传_学习day10">10-项目开发-8-文件上传_学习day10</a><time datetime="2023-12-11T02:54:41.149Z" title="发表于 2023-12-11 10:54:41">2023-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By Summer</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'g7qf0Ire1xGMSZtkGGvM50HJ-MdYXbMMI',
+      appKey: 'pIdXWyk31DKpWhkN7IFFbMnR',
+      avatar: 'retro',
+      serverURLs: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
