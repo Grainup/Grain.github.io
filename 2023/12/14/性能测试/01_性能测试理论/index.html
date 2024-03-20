@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>01.性能测试的理论 | Grain's Blog</title><meta name="author" content="Grain"><meta name="copyright" content="Grain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1、性能测试的概念为什么要做性能测试？   进行性能测试：满足真实业务场景、支持大量的用户。满足商用要求 1. 概念 性能：就是软件质量属性中的效率特性  效率特性： 时间特性：表示系统处理用户请求的响应时间 资源特性：指系统在运行过程中，系统资源的消耗情况（CPU、内存、磁盘IO）     什么是性能测试？ 概念：使用自动化工具，模拟不同的场景，对软件各项性能指标进行测试和评估的过程就是性能测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01.性能测试的理论">
+<meta property="og:url" content="https://github.com/Grainup/Grain.github.io.git/2023/12/14/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/01_%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%90%86%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Grain&#39;s Blog">
+<meta property="og:description" content="1、性能测试的概念为什么要做性能测试？   进行性能测试：满足真实业务场景、支持大量的用户。满足商用要求 1. 概念 性能：就是软件质量属性中的效率特性  效率特性： 时间特性：表示系统处理用户请求的响应时间 资源特性：指系统在运行过程中，系统资源的消耗情况（CPU、内存、磁盘IO）     什么是性能测试？ 概念：使用自动化工具，模拟不同的场景，对软件各项性能指标进行测试和评估的过程就是性能测试">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-12-14T01:45:07.709Z">
+<meta property="article:modified_time" content="2023-12-15T02:51:16.720Z">
+<meta property="article:author" content="Grain">
+<meta property="article:tag" content="性能测试学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/Grainup/Grain.github.io.git/2023/12/14/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/01_%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%90%86%E8%AE%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '01.性能测试的理论',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-15 10:51:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Grain's Blog"><span class="site-name">Grain's Blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">01.性能测试的理论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-14T01:45:07.709Z" title="发表于 2023-12-14 09:45:07">2023-12-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-15T02:51:16.720Z" title="更新于 2023-12-15 10:51:16">2023-12-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/">性能测试学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="01.性能测试的理论"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1、性能测试的概念"><a href="#1、性能测试的概念" class="headerlink" title="1、性能测试的概念"></a>1、性能测试的概念</h1><div class="note success flat"><p>为什么要做性能测试？</p>
+</div>
+
+<p>进行性能测试：满足真实业务场景、支持大量的用户。满足商用要求</p>
+<h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h2><ul>
+<li><p>性能：就是软件质量属性中的<code>效率</code>特性</p>
+<ul>
+<li>效率特性：<ul>
+<li>时间特性：表示系统处理用户请求的响应时间</li>
+<li>资源特性：指系统在运行过程中，系统资源的消耗情况（CPU、内存、磁盘IO）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>什么是性能测试？</p>
+<p>概念：使用<strong>自动化工具</strong>，模拟<strong>不同的场景</strong>，对<strong>软件各项性能指标</strong>进行测试和评估的过程就是性能测试。</p>
+</li>
+</ul>
+<p>​		包含：1. 后台处理程序的性能（代码性能）</p>
+<p>​				    2. 中间件、数据库、架构设计等是否存在瓶颈</p>
+<p>​				    3. 服务器资源消耗（CPU、内存、磁盘、网络）</p>
+<ul>
+<li>性能测试的目的<ul>
+<li>评估当前系统能力<ul>
+<li>例如：验收第三方提供的软件</li>
+<li>例如：获取关键的性能指标，与其他类似产品进行比较</li>
+</ul>
+</li>
+<li>寻找性能瓶颈，优化性能</li>
+<li>评估软件是否能够满足未来的需要</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-性能测试与功能测试"><a href="#2-性能测试与功能测试" class="headerlink" title="2. 性能测试与功能测试"></a>2. 性能测试与功能测试</h2><h3 id="2-1-焦点不一样"><a href="#2-1-焦点不一样" class="headerlink" title="2.1 焦点不一样"></a>2.1 焦点不一样</h3><ul>
+<li><p>功能测试：验证软件系统操作功能是否符合产品<strong>功能需求规格</strong>，主要焦点在功能（<strong>正向、逆向</strong>）；</p>
+</li>
+<li><p>性能测试：验证软件系统是否满足业务<strong>需求场景</strong>，主要焦点是业务场景的满足(<strong>时间、资源</strong>、正向)；</p>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/17475ae0356f4575442576bf1ed0d09f.png" alt="image-20231214101357875"></p>
+</li>
+</ul>
+<h3 id="2-2-关系"><a href="#2-2-关系" class="headerlink" title="2.2 关系"></a>2.2 关系</h3><ul>
+<li>功能测试和性能测试是相辅相成的，对于一款优秀的软件产品来讲，它们是不可减少的2个重要测试环节；</li>
+<li>注意：一般新项目中，先功能测试通过后，再进行性能测试。</li>
+</ul>
+<h1 id="2、性能测试的策略"><a href="#2、性能测试的策略" class="headerlink" title="2、性能测试的策略"></a>2、性能测试的策略</h1><ul>
+<li>基准测试</li>
+<li>负载测试</li>
+<li>稳定性测试</li>
+<li>其他：并发测试、压力测试、容量测试等</li>
+</ul>
+<h2 id="1-基准测试"><a href="#1-基准测试" class="headerlink" title="1. 基准测试"></a>1. 基准测试</h2><ul>
+<li><p>狭义上讲：也是单用户测试，测试环境确定以后，对业务模型中的重要业务做单独的测试，获取单用户运行时的各项性能指标。（进行基础的数据采集），单用户测多次</p>
+</li>
+<li><p>广义上讲：是一种测量和评估软件性能指标的活动。你可以在某个时刻通过基准测试建立一个已知的性能水平（称为基准线），当系统的软硬件环境发生变化之后再进行一次基准测试以确定那些变化对性能的影响。</p>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/5c7d3bbaf07c4934dee1dcb087fd9312.png" alt="image-20231214104917048"></p>
+</li>
+<li><p>基准测试数据的用途：</p>
+<ol>
+<li><p>为多用户并发测试和综合场景测试等性能分析提供参考依据</p>
+</li>
+<li><p>识别系统或环境的配置变更对性能响应带来的影响</p>
+</li>
+<li><p>为系统优化前后的性能提升&#x2F;下降提供参考指标</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-负载测试"><a href="#2-负载测试" class="headerlink" title="2. 负载测试"></a>2. 负载测试</h2><ul>
+<li>说明：通过<strong>逐步增加系统负载</strong>，测试系统性能的变化，并最终确定在<strong>满足系统的性能指标情况下</strong>，系统所能够承受的<strong>最大负载量</strong>的测试。</li>
+<li>负载：指向服务器发送的请求数量，请求越多，负载越高</li>
+<li>负载测试关注的重点是<strong>逐步增加压力</strong></li>
+</ul>
+<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/29ca991729ca2aeb95bb7820936c89d0.png" alt="image-20231214110344179" style="zoom:80%;" />
+
+<h2 id="3-稳定性测试"><a href="#3-稳定性测试" class="headerlink" title="3. 稳定性测试"></a>3. 稳定性测试</h2><p>稳定性测试是指，在服务器<strong>稳定运行（用户正常的业务负载下）</strong>的情况下进行长时间测试，并最终保证服务器能满足线上业务需求。时长<strong>一般为1天、一周</strong>等。</p>
+<div class="note warning flat"><p>稳定运行时的负载量设置为多少？</p>
+</div>
+
+<p>例如：前面电梯案例中，实际测试的最大负载为：13人</p>
+<ul>
+<li>场景1：如果甲方要求用户正常的负载人数为15人，稳定运行的负载量为多少？<ul>
+<li>答：实际性能达不到要求，这时候就要提BUG，进行修复以达到要求性能后再测试</li>
+</ul>
+</li>
+<li>场景2：如果甲方要求用户正常的负载人数为10人，稳定运行的负载量为多少？<ul>
+<li>答：稳定运行的负载量为10就可以了</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-压力测试"><a href="#4-压力测试" class="headerlink" title="4. 压力测试"></a>4. 压力测试</h2><ul>
+<li><p>为什么要进行压力测试？</p>
+<ul>
+<li>软件实际使用时，用户量超过预期（系统最大负载量），改如何反应？</li>
+<li>软件由于意外情况出现问题，多久能恢复</li>
+</ul>
+</li>
+<li><p>在强负载下的测试，查看系统在<strong>峰值情况下</strong>是否功能隐患、系统是否具有良好的<strong>容错能力</strong>和<strong>可恢复能力</strong>。</p>
+</li>
+<li><p><strong>两个场景</strong>：1、极限负载情况下导致系统崩溃的破坏性压力测试【C-D区间】；2、高负载下的长时间的稳定性压力测试【B-C区间】</p>
+</li>
+</ul>
+<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/5f4daa5414355d3fc94c213efe0aabbd.jpg" style="zoom:80%;" />
+
+<h2 id="5-并发测试"><a href="#5-并发测试" class="headerlink" title="5. 并发测试"></a>5. 并发测试</h2><ul>
+<li><p>为什么要进行并发测试？</p>
+<ul>
+<li>电商系统能抗住双11的考验，能保证在秒杀活动时不出问题吗？</li>
+</ul>
+</li>
+<li><p>并发测试（绝对并发）：是指在<strong>极短的时间内</strong>，发送<strong>多个请求</strong>，来验证服务器对<strong>并发的处理能力</strong>。</p>
+<p>如：抢红包、抢购、秒杀活动等。</p>
+</li>
+</ul>
+<h1 id="3、性能测试指标"><a href="#3、性能测试指标" class="headerlink" title="3、性能测试指标"></a>3、性能测试指标</h1><ul>
+<li>响应时间</li>
+<li>并发数</li>
+<li>吞吐量</li>
+<li>点击数</li>
+<li>错误率</li>
+<li>资源利用率</li>
+<li>PV和UV</li>
+</ul>
+<h2 id="1-响应时间"><a href="#1-响应时间" class="headerlink" title="1. 响应时间"></a>1. 响应时间</h2><p>说明：响应时间指用户<strong>从客户端发起一个请求开始</strong>，到客户端接收<strong>到从服务器端返回的结果</strong>，整个过程所耗费的时间。</p>
+<ul>
+<li>注意：不包括 <strong>发送消息时前端页面的处理时间</strong> 和 <strong>收到消息后前端页面的渲染显示时间</strong></li>
+</ul>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/2d80224a5f582f9702f0865fe0288d7d.png" alt="image-20231214115320201"></p>
+<p>总结：响应时间 &#x3D; 网络传输时间 + 服务器处理时间</p>
+<h2 id="2-并发数"><a href="#2-并发数" class="headerlink" title="2. 并发数"></a>2. 并发数</h2><p>并发(用户)数：某一时刻同时向服务器发送请求的用户数。</p>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/ce36c4f96eceb922fb8630a015977680.png" alt="image-20231214115600973"></p>
+<h2 id="3-吞吐量"><a href="#3-吞吐量" class="headerlink" title="3. 吞吐量"></a>3. 吞吐量</h2><p>吞吐量：指的是<strong>单位时间内</strong>处理的客户端<strong>请求数量</strong>，直接体现软件系统的性能承载能力。</p>
+<ol>
+<li>从业务角度来看，吞吐量也可以用“业务数&#x2F;小时”、“业务数&#x2F;天”、“访问人数&#x2F;天”、“页面访问量&#x2F;天”来衡量</li>
+<li>从网络角度来看，还可以用“字节数&#x2F;小时”、“字节数&#x2F;天”等来衡量网络的流量</li>
+<li>从技术指标来看，可以用<strong>每秒事务数（TPS）</strong>和<strong>每秒查询数（QPS）</strong>来衡量服务器具体性能处理能力</li>
+</ol>
+<ul>
+<li><strong>QPS每秒查询数：</strong>控制服务器<strong>每秒</strong>处理的指定<strong>请求</strong>的数量，不同请求不一样</li>
+<li><strong>TPS每秒事务数：</strong>控制服务器<strong>每秒</strong>处理的<strong>事务请求</strong>的数量<ul>
+<li>事务：即业务，页面上的一次操作，可能对应一个请求&#x2F;多个请求</li>
+</ul>
+</li>
+<li><strong>QPS和TPS有什么关系？</strong><ul>
+<li>一个事务对应一个请求时： TPS &#x3D; QPS</li>
+<li>一个事务对应n个请求时： QPS &#x3D; n * TPS</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-点击数"><a href="#4-点击数" class="headerlink" title="4. 点击数"></a>4. 点击数</h2><p>指客户端向服务端发送请求时，所有的页面资源元素（如：图片、链接、框架css、js等）的请求总数量。</p>
+<ul>
+<li>只有web项目才有此指标</li>
+<li>点击数不是页面上的一次点击</li>
+</ul>
+<h2 id="5-错误率"><a href="#5-错误率" class="headerlink" title="5. 错误率"></a>5. 错误率</h2><p>错误率：指系统在<strong>负载情况</strong>下，失败业务的概率。错误率＝(失败业务数&#x2F;业务总数)*100%。</p>
+<ul>
+<li>大多系统都会要求错误率无限接近于0</li>
+<li>错误率是一个性能指标，不是功能上的随机bug</li>
+</ul>
+<h2 id="6-资源利用率"><a href="#6-资源利用率" class="headerlink" title="6. 资源利用率"></a>6. 资源利用率</h2><p>是指系统各种资源的使用情况，一般用“资源的使用量&#x2F;总的资源可用量×100%”形成资源利用率的数据。</p>
+<p>根据经验，资源指标通常要求：<br>（1）CPU不高于75%-85%<br>（2）内存不高于80%<br>（3）磁盘IO（速率）不高于90%<br>（4）网络（速率）不高于80%</p>
+<h1 id="4、性能测试的流程"><a href="#4、性能测试的流程" class="headerlink" title="4、性能测试的流程"></a>4、性能测试的流程</h1><ol>
+<li>性能测试需求分析：熟悉需求，获取性能需求指标</li>
+<li>性能测试计划及方案：测什么，谁来测、怎么测</li>
+<li>性能测试用例：用来验证系统是否符合需求</li>
+<li>测试脚本编写&#x2F;录制：建立测试环境、编写测试脚本、性能测试监控、执行测试脚本</li>
+<li>性能分析和调优：分析性能结果，针对性能bug调优</li>
+<li>性能测试报告总结</li>
+</ol>
+<h2 id="1-性能测试需求分析"><a href="#1-性能测试需求分析" class="headerlink" title="1. 性能测试需求分析"></a>1. 性能测试需求分析</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/4c840cc428ff15131d8701113ef3c28e.png" alt="image-20231215103432087"></p>
+<h2 id="2-性能测试计划和方案"><a href="#2-性能测试计划和方案" class="headerlink" title="2. 性能测试计划和方案"></a>2. 性能测试计划和方案</h2><ul>
+<li><p>测什么</p>
+<ul>
+<li><p>项目背景</p>
+</li>
+<li><p>测试目的</p>
+</li>
+<li><p>测试范围</p>
+</li>
+</ul>
+</li>
+<li><p>谁来测</p>
+<ul>
+<li>进度与分工</li>
+<li>交付清单</li>
+</ul>
+</li>
+<li><p>怎么测</p>
+<ul>
+<li>测试策略</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-性能测试用例"><a href="#3-性能测试用例" class="headerlink" title="3. 性能测试用例"></a>3. 性能测试用例</h2><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/fadd09adf4829e29663152de0fbe7227.jpg" style="zoom:80%;" />
+
+<h2 id="4-性能测试执行"><a href="#4-性能测试执行" class="headerlink" title="4. 性能测试执行"></a>4. 性能测试执行</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/f37f3ca382d400b4e6b2d59dc5331240.png" alt="image-20231215104326524"></p>
+<h2 id="5-性能分析和调优"><a href="#5-性能分析和调优" class="headerlink" title="5. 性能分析和调优"></a>5. 性能分析和调优</h2><p>说明：性能测试分析人员经过对结果的分析以后，如果不符合性能需求，则会提出性能bug，然后由开发人员进行后续的调优。</p>
+<p>提示：</p>
+<ul>
+<li>调优 – 开发人员为主导，数据库管理员、系统管理员、网络管理员、性能测试分析人员配合进行</li>
+<li>验证 - 性能测试人员继续进行第二轮、第三轮……的测试，与以前的测试结果进行对比，从而确定经过调整以后系统的性能是否有提升</li>
+</ul>
+<h2 id="6-性能测试报告"><a href="#6-性能测试报告" class="headerlink" title="6. 性能测试报告"></a>6. 性能测试报告</h2><p>测试报告的主要内容：</p>
+<ul>
+<li>测试工作的经过回顾</li>
+<li>缺陷分析和调优</li>
+<li>风险评估</li>
+<li>性能测试结果</li>
+<li>测试工作总结与改进</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://github.com/Grainup/Grain.github.io.git">Grain</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://github.com/Grainup/Grain.github.io.git/2023/12/14/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/01_%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%90%86%E8%AE%BA/">https://github.com/Grainup/Grain.github.io.git/2023/12/14/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/01_%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%90%86%E8%AE%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://github.com/Grainup/Grain.github.io.git" target="_blank">Grain's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/">性能测试学习</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/15/Django-drf/01-drf%E5%AD%A6%E4%B9%A0_1/" title="01.drf学习day01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">01.drf学习day01</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/13/0-Django%E5%AE%9E%E8%B7%B5-%E9%97%AE%E7%AD%94%E7%B3%BB%E7%BB%9F/01-%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="01.django项目的一些最佳实践"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">01.django项目的一些最佳实践</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/02/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/02_jmeter%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="02.jmeter工具使用1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-02</div><div class="title">02.jmeter工具使用1</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Grain</div><div class="author-info__description">记录日常生活</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">1、性能测试的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">1. 概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">2. 性能测试与功能测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%84%A6%E7%82%B9%E4%B8%8D%E4%B8%80%E6%A0%B7"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 焦点不一样</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%85%B3%E7%B3%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 关系</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9A%84%E7%AD%96%E7%95%A5"><span class="toc-number">2.</span> <span class="toc-text">2、性能测试的策略</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95"><span class="toc-number">2.1.</span> <span class="toc-text">1. 基准测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B4%9F%E8%BD%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">2.2.</span> <span class="toc-text">2. 负载测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%A8%B3%E5%AE%9A%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">2.3.</span> <span class="toc-text">3. 稳定性测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95"><span class="toc-number">2.4.</span> <span class="toc-text">4. 压力测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95"><span class="toc-number">2.5.</span> <span class="toc-text">5. 并发测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87"><span class="toc-number">3.</span> <span class="toc-text">3、性能测试指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"><span class="toc-number">3.1.</span> <span class="toc-text">1. 响应时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B9%B6%E5%8F%91%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">2. 并发数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%90%9E%E5%90%90%E9%87%8F"><span class="toc-number">3.3.</span> <span class="toc-text">3. 吞吐量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%82%B9%E5%87%BB%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">4. 点击数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%94%99%E8%AF%AF%E7%8E%87"><span class="toc-number">3.5.</span> <span class="toc-text">5. 错误率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%B5%84%E6%BA%90%E5%88%A9%E7%94%A8%E7%8E%87"><span class="toc-number">3.6.</span> <span class="toc-text">6. 资源利用率</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">4、性能测试的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">4.1.</span> <span class="toc-text">1. 性能测试需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92%E5%92%8C%E6%96%B9%E6%A1%88"><span class="toc-number">4.2.</span> <span class="toc-text">2. 性能测试计划和方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="toc-number">4.3.</span> <span class="toc-text">3. 性能测试用例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%89%A7%E8%A1%8C"><span class="toc-number">4.4.</span> <span class="toc-text">4. 性能测试执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%92%8C%E8%B0%83%E4%BC%98"><span class="toc-number">4.5.</span> <span class="toc-text">5. 性能分析和调优</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A"><span class="toc-number">4.6.</span> <span class="toc-text">6. 性能测试报告</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E7%AE%97%E6%B3%95/%E5%8F%8C%E6%8C%87%E9%92%88/" title="无题">无题</a><time datetime="2024-03-11T10:36:19.262Z" title="发表于 2024-03-11 18:36:19">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%B3%95/" title="无题">无题</a><time datetime="2024-03-11T00:39:57.449Z" title="发表于 2024-03-11 08:39:57">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/02/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/02_jmeter%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="02.jmeter工具使用1">02.jmeter工具使用1</a><time datetime="2024-01-02T01:11:57.454Z" title="发表于 2024-01-02 09:11:57">2024-01-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/15/Django-drf/01-drf%E5%AD%A6%E4%B9%A0_1/" title="01.drf学习day01">01.drf学习day01</a><time datetime="2023-12-15T09:53:21.941Z" title="发表于 2023-12-15 17:53:21">2023-12-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/14/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/01_%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%90%86%E8%AE%BA/" title="01.性能测试的理论">01.性能测试的理论</a><time datetime="2023-12-14T01:45:07.709Z" title="发表于 2023-12-14 09:45:07">2023-12-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Grain</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

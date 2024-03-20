@@ -1,758 +1,217 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Grain">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="用户登录1、用户登录简单实现12345678910111213141516171819202122def login(request):    &quot;&quot;&quot;用户登录&quot;&quot;&quot;    if request.method &#x3D;&#x3D; &quot;GET&quot;:        form &#x3D; LoginForm()        return render">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>07-项目开发-5_学习day07-用户认证、图片验证 | Grain's Blog</title><meta name="author" content="Grain"><meta name="copyright" content="Grain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="用户登录1、用户登录简单实现12345678910111213141516171819202122def login(request):    &quot;&quot;&quot;用户登录&quot;&quot;&quot;    if request.method &#x3D;&#x3D; &quot;GET&quot;:        form &#x3D; LoginForm()        return render">
 <meta property="og:type" content="article">
 <meta property="og:title" content="07-项目开发-5_学习day07-用户认证、图片验证">
 <meta property="og:url" content="https://github.com/Grainup/Grain.github.io.git/2023/12/03/Django/07-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-5-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81/index.html">
 <meta property="og:site_name" content="Grain&#39;s Blog">
 <meta property="og:description" content="用户登录1、用户登录简单实现12345678910111213141516171819202122def login(request):    &quot;&quot;&quot;用户登录&quot;&quot;&quot;    if request.method &#x3D;&#x3D; &quot;GET&quot;:        form &#x3D; LoginForm()        return render">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/d9955a11d1008ff482671ec6bb671c11.png">
-<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/4ec6d9468ef2a9fec7bf11293d4a2498.png">
-<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/423aabf0ce31c74c4c5769405a044d1a.png">
-<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/fa6b6af2d03393beb292266f70ce6a21.png">
-<meta property="og:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/99e224787a9efe1eb2c4b7b688eae19c.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2023-12-03T07:28:24.004Z">
 <meta property="article:modified_time" content="2023-12-05T09:03:11.271Z">
 <meta property="article:author" content="Grain">
 <meta property="article:tag" content="Django">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/d9955a11d1008ff482671ec6bb671c11.png">
-  
-  
-  
-  <title>07-项目开发-5_学习day07-用户认证、图片验证 - Grain&#39;s Blog</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"github.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/Grainup/Grain.github.io.git/2023/12/03/Django/07-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-5-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '07-项目开发-5_学习day07-用户认证、图片验证',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-05 17:03:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-
-<body>
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
   
-
-  <header>
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Grain&#39;s Blog</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/index.jpg') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="07-项目开发-5_学习day07-用户认证、图片验证"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-03 15:28" pubdate>
-          2023年12月3日下午3点28分
-        </time>
-      </span>
-    
-  </div>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Grain's Blog"><span class="site-name">Grain's Blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">07-项目开发-5_学习day07-用户认证、图片验证</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-03T07:28:24.004Z" title="发表于 2023-12-03 15:28:24">2023-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-05T09:03:11.271Z" title="更新于 2023-12-05 17:03:11">2023-12-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Django%E5%AD%A6%E4%B9%A0/">Django学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="07-项目开发-5_学习day07-用户认证、图片验证"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h1><h2 id="1、用户登录简单实现"><a href="#1、用户登录简单实现" class="headerlink" title="1、用户登录简单实现"></a>1、用户登录简单实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;用户登录&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&quot;GET&quot;</span>:</span><br><span class="line">        form = LoginForm()</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">&#x27;login.html&#x27;</span>, &#123;<span class="string">&quot;form&quot;</span>: form&#125;)</span><br><span class="line">    form = LoginForm(data=request.POST)</span><br><span class="line">    <span class="keyword">if</span> form.is_valid():</span><br><span class="line">        <span class="comment"># 1. form.cleaned_data是提交的用户名密码</span></span><br><span class="line">        <span class="comment"># print(form.cleaned_data)</span></span><br><span class="line">        <span class="comment"># 2. 去数据库校验</span></span><br><span class="line">        admin_obj = models.Admin.objects.<span class="built_in">filter</span>(**form.cleaned_data).first()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> admin_obj <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="comment"># 主动显示错误信息</span></span><br><span class="line">            form.add_error(<span class="string">&quot;password&quot;</span>, <span class="string">&quot;用户名或密码错误&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> render(request, <span class="string">&quot;login.html&quot;</span>, &#123;<span class="string">&quot;form&quot;</span>: form&#125;)</span><br><span class="line">        <span class="comment"># 用户名密码正确后,写入session</span></span><br><span class="line">        request.session[<span class="string">&quot;info&quot;</span>] = &#123;<span class="string">&quot;id&quot;</span>: admin_obj.<span class="built_in">id</span>, <span class="string">&quot;username&quot;</span>: admin_obj.username&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">&quot;/admin/list/&quot;</span>)</span><br><span class="line">    <span class="comment"># 如果有错误信息</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;login.html&quot;</span>, &#123;<span class="string">&quot;form&quot;</span>: form&#125;)</span><br></pre></td></tr></table></figure>
 
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          4.7k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          40 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">07-项目开发-5_学习day07-用户认证、图片验证</h1>
-            
-              <p class="note note-info">
-                
-                  
-                    本文最后更新于：2023年12月5日下午5点03分
-                  
-                
-              </p>
-            
-            
-              <div class="markdown-body">
-                
-                <h1 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h1><h2 id="1、用户登录简单实现"><a href="#1、用户登录简单实现" class="headerlink" title="1、用户登录简单实现"></a>1、用户登录简单实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">login</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;用户登录&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> request.method == <span class="hljs-string">&quot;GET&quot;</span>:<br>        form = LoginForm()<br>        <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&#x27;login.html&#x27;</span>, &#123;<span class="hljs-string">&quot;form&quot;</span>: form&#125;)<br>    form = LoginForm(data=request.POST)<br>    <span class="hljs-keyword">if</span> form.is_valid():<br>        <span class="hljs-comment"># 1. form.cleaned_data是提交的用户名密码</span><br>        <span class="hljs-comment"># print(form.cleaned_data)</span><br>        <span class="hljs-comment"># 2. 去数据库校验</span><br>        admin_obj = models.Admin.objects.<span class="hljs-built_in">filter</span>(**form.cleaned_data).first()<br><br>        <span class="hljs-keyword">if</span> admin_obj <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-comment"># 主动显示错误信息</span><br>            form.add_error(<span class="hljs-string">&quot;password&quot;</span>, <span class="hljs-string">&quot;用户名或密码错误&quot;</span>)<br>            <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;login.html&quot;</span>, &#123;<span class="hljs-string">&quot;form&quot;</span>: form&#125;)<br>        <span class="hljs-comment"># 用户名密码正确后,写入session</span><br>        request.session[<span class="hljs-string">&quot;info&quot;</span>] = &#123;<span class="hljs-string">&quot;id&quot;</span>: admin_obj.<span class="hljs-built_in">id</span>, <span class="hljs-string">&quot;username&quot;</span>: admin_obj.username&#125;<br><br>        <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">&quot;/admin/list/&quot;</span>)<br>    <span class="hljs-comment"># 如果有错误信息</span><br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;login.html&quot;</span>, &#123;<span class="hljs-string">&quot;form&quot;</span>: form&#125;)<br></code></pre></td></tr></table></figure>
-
-<h2 id="2、用户登录验证"><a href="#2、用户登录验证" class="headerlink" title="2、用户登录验证"></a>2、用户登录验证</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">admin_list</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;管理员列表&quot;&quot;&quot;</span><br><br>    <span class="hljs-comment"># 检查用户是否已登录，若已登录则继续，未登录则跳转回登录页面</span><br>    <span class="hljs-comment"># 用户发来请求，获取cookie随机字符串，拿随机字符串对比session中有没有</span><br>    info = request.session.get(<span class="hljs-string">&quot;info&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> info:<br>        <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">&#x27;/login/&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="2、用户登录验证"><a href="#2、用户登录验证" class="headerlink" title="2、用户登录验证"></a>2、用户登录验证</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">admin_list</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;管理员列表&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查用户是否已登录，若已登录则继续，未登录则跳转回登录页面</span></span><br><span class="line">    <span class="comment"># 用户发来请求，获取cookie随机字符串，拿随机字符串对比session中有没有</span></span><br><span class="line">    info = request.session.get(<span class="string">&quot;info&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> info:</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">&#x27;/login/&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>以上判断可以加入中间件来使用</li>
 </ul>
-<h3 id="2-1-中间件"><a href="#2-1-中间件" class="headerlink" title="2.1 中间件"></a>2.1 中间件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;&quot;&quot;中间件编写&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> django.utils.deprecation <span class="hljs-keyword">import</span> MiddlewareMixin<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">M1</span>(<span class="hljs-title class_ inherited__">MiddlewareMixin</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">process_request</span>(<span class="hljs-params">self,request</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;进入中间件&quot;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">process_response</span>(<span class="hljs-params">self,request,response</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;退出中间件&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="2-1-中间件"><a href="#2-1-中间件" class="headerlink" title="2.1 中间件"></a>2.1 中间件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;中间件编写&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> django.utils.deprecation <span class="keyword">import</span> MiddlewareMixin</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">M1</span>(<span class="title class_ inherited__">MiddlewareMixin</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_request</span>(<span class="params">self,request</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;进入中间件&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_response</span>(<span class="params">self,request,response</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;退出中间件&quot;</span>)</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>还需要在settings.py中注册中间件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">MIDDLEWARE = [<br>    <span class="hljs-string">&quot;django.middleware.security.SecurityMiddleware&quot;</span>,<br>    <span class="hljs-string">&quot;django.contrib.sessions.middleware.SessionMiddleware&quot;</span>,<br>    <span class="hljs-string">&quot;django.middleware.common.CommonMiddleware&quot;</span>,<br>    <span class="hljs-string">&quot;django.middleware.csrf.CsrfViewMiddleware&quot;</span>,<br>    <span class="hljs-string">&quot;django.contrib.auth.middleware.AuthenticationMiddleware&quot;</span>,<br>    <span class="hljs-string">&quot;django.contrib.messages.middleware.MessageMiddleware&quot;</span>,<br>    <span class="hljs-string">&quot;django.middleware.clickjacking.XFrameOptionsMiddleware&quot;</span>,<br>    <span class="hljs-string">&quot;app01.middleware.auth.M1&quot;</span>,	<span class="hljs-comment"># 加入创建的中间件</span><br>]<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">MIDDLEWARE = [</span><br><span class="line">    <span class="string">&quot;django.middleware.security.SecurityMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.contrib.sessions.middleware.SessionMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.middleware.common.CommonMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.middleware.csrf.CsrfViewMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.contrib.auth.middleware.AuthenticationMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.contrib.messages.middleware.MessageMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.middleware.clickjacking.XFrameOptionsMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;app01.middleware.auth.M1&quot;</span>,	<span class="comment"># 加入创建的中间件</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;&quot;&quot;中间件编写&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> django.utils.deprecation <span class="hljs-keyword">import</span> MiddlewareMixin<br><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render, redirect<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">M1</span>(<span class="hljs-title class_ inherited__">MiddlewareMixin</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">process_request</span>(<span class="hljs-params">self, request</span>):<br>        <span class="hljs-comment"># 0. 排出那些而不需要登录就能访问的页面</span><br>        <span class="hljs-keyword">if</span> request.path_info == <span class="hljs-string">&quot;/login/&quot;</span>:<br>            <span class="hljs-keyword">return</span><br>        <span class="hljs-comment"># 1. 读取当前访问的用户的session信息，如果能读到，说明已登录过，就可以继续后续操作</span><br>        info_dict = request.session.get(<span class="hljs-string">&quot;info&quot;</span>)<br>        <span class="hljs-keyword">if</span> info_dict:<br>            <span class="hljs-keyword">return</span><br>        <span class="hljs-comment"># 2. 如果没有登录，则重新返回登录页面</span><br>        <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">&#x27;/login/&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;中间件编写&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> django.utils.deprecation <span class="keyword">import</span> MiddlewareMixin</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render, redirect</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">M1</span>(<span class="title class_ inherited__">MiddlewareMixin</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_request</span>(<span class="params">self, request</span>):</span><br><span class="line">        <span class="comment"># 0. 排出那些而不需要登录就能访问的页面</span></span><br><span class="line">        <span class="keyword">if</span> request.path_info == <span class="string">&quot;/login/&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="comment"># 1. 读取当前访问的用户的session信息，如果能读到，说明已登录过，就可以继续后续操作</span></span><br><span class="line">        info_dict = request.session.get(<span class="string">&quot;info&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> info_dict:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="comment"># 2. 如果没有登录，则重新返回登录页面</span></span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">&#x27;/login/&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="3、用户注销"><a href="#3、用户注销" class="headerlink" title="3、用户注销"></a>3、用户注销</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">logout</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;注销&quot;&quot;&quot;</span><br>    request.session.clear()<br>    <span class="hljs-keyword">return</span> redirect(<span class="hljs-string">&#x27;/login/&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="3、用户注销"><a href="#3、用户注销" class="headerlink" title="3、用户注销"></a>3、用户注销</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">logout</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;注销&quot;&quot;&quot;</span></span><br><span class="line">    request.session.clear()</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&#x27;/login/&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>用户登录后需要显示登录用户的名字</p>
-<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/d9955a11d1008ff482671ec6bb671c11.png" srcset="/img/loading.gif" lazyload alt="image-20231205151805919"></p>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/d9955a11d1008ff482671ec6bb671c11.png" alt="image-20231205151805919"></p>
 </li>
 </ul>
-<h2 id="4、图片验证码"><a href="#4、图片验证码" class="headerlink" title="4、图片验证码"></a>4、图片验证码</h2><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/4ec6d9468ef2a9fec7bf11293d4a2498.png" srcset="/img/loading.gif" lazyload alt="image-20231205155226655" style="zoom: 67%;" />
+<h2 id="4、图片验证码"><a href="#4、图片验证码" class="headerlink" title="4、图片验证码"></a>4、图片验证码</h2><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/4ec6d9468ef2a9fec7bf11293d4a2498.png" alt="image-20231205155226655" style="zoom: 67%;" />
 
-<h3 id="4-1-生成验证码图片"><a href="#4-1-生成验证码图片" class="headerlink" title="4.1 生成验证码图片"></a>4.1 生成验证码图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pip instill pillow	<span class="hljs-comment"># 使用第三方插件</span><br></code></pre></td></tr></table></figure>
+<h3 id="4-1-生成验证码图片"><a href="#4-1-生成验证码图片" class="headerlink" title="4.1 生成验证码图片"></a>4.1 生成验证码图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip instill pillow	<span class="comment"># 使用第三方插件</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wupeiqi/articles/5812291.html">https://www.cnblogs.com/wupeiqi/articles/5812291.html</a></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;&quot;&quot;生成随机验证码&quot;&quot;&quot;</span><br><br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> ImageFilter, Image, ImageDraw, ImageFont<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_code</span>(<span class="hljs-params">width=<span class="hljs-number">120</span>, height=<span class="hljs-number">30</span>, char_length=<span class="hljs-number">5</span>, font_file=<span class="hljs-string">&#x27;Monaco.ttf&#x27;</span>, font_size=<span class="hljs-number">28</span></span>):<br>    code = []<br>    img = Image.new(mode=<span class="hljs-string">&#x27;RGB&#x27;</span>, size=(width, height), color=(<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>))<br>    draw = ImageDraw.Draw(img, mode=<span class="hljs-string">&#x27;RGB&#x27;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">rndChar</span>():<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        生成随机字母</span><br><span class="hljs-string">        :return:</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">chr</span>(random.randint(<span class="hljs-number">65</span>, <span class="hljs-number">90</span>))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">rndColor</span>():<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        生成随机颜色</span><br><span class="hljs-string">        :return:</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        <span class="hljs-keyword">return</span> (random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>), random.randint(<span class="hljs-number">10</span>, <span class="hljs-number">255</span>), random.randint(<span class="hljs-number">64</span>, <span class="hljs-number">255</span>))<br><br>    <span class="hljs-comment"># 写文字</span><br>    font = ImageFont.truetype(font_file, font_size)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(char_length):<br>        char = rndChar()<br>        code.append(char)<br>        h = random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>)<br>        draw.text([i * width / char_length, h], char, font=font, fill=rndColor())<br><br>    <span class="hljs-comment"># 写干扰点</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">40</span>):<br>        draw.point([random.randint(<span class="hljs-number">0</span>, width), random.randint(<span class="hljs-number">0</span>, height)], fill=rndColor())<br><br>    <span class="hljs-comment"># 写干扰圆圈</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">40</span>):<br>        draw.point([random.randint(<span class="hljs-number">0</span>, width), random.randint(<span class="hljs-number">0</span>, height)], fill=rndColor())<br>        x = random.randint(<span class="hljs-number">0</span>, width)<br>        y = random.randint(<span class="hljs-number">0</span>, height)<br>        draw.arc((x, y, x + <span class="hljs-number">4</span>, y + <span class="hljs-number">4</span>), <span class="hljs-number">0</span>, <span class="hljs-number">90</span>, fill=rndColor())<br><br>    <span class="hljs-comment"># 画干扰线</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):<br>        x1 = random.randint(<span class="hljs-number">0</span>, width)<br>        y1 = random.randint(<span class="hljs-number">0</span>, height)<br>        x2 = random.randint(<span class="hljs-number">0</span>, width)<br>        y2 = random.randint(<span class="hljs-number">0</span>, height)<br><br>        draw.line((x1, y1, x2, y2), fill=rndColor())<br><br>    img = img.<span class="hljs-built_in">filter</span>(ImageFilter.EDGE_ENHANCE_MORE)<br>    <span class="hljs-keyword">return</span> img, <span class="hljs-string">&#x27;&#x27;</span>.join(code)<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;生成随机验证码&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFilter, Image, ImageDraw, ImageFont</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_code</span>(<span class="params">width=<span class="number">120</span>, height=<span class="number">30</span>, char_length=<span class="number">5</span>, font_file=<span class="string">&#x27;Monaco.ttf&#x27;</span>, font_size=<span class="number">28</span></span>):</span><br><span class="line">    code = []</span><br><span class="line">    img = Image.new(mode=<span class="string">&#x27;RGB&#x27;</span>, size=(width, height), color=(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))</span><br><span class="line">    draw = ImageDraw.Draw(img, mode=<span class="string">&#x27;RGB&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rndChar</span>():</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        生成随机字母</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">chr</span>(random.randint(<span class="number">65</span>, <span class="number">90</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rndColor</span>():</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        生成随机颜色</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> (random.randint(<span class="number">0</span>, <span class="number">255</span>), random.randint(<span class="number">10</span>, <span class="number">255</span>), random.randint(<span class="number">64</span>, <span class="number">255</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 写文字</span></span><br><span class="line">    font = ImageFont.truetype(font_file, font_size)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(char_length):</span><br><span class="line">        char = rndChar()</span><br><span class="line">        code.append(char)</span><br><span class="line">        h = random.randint(<span class="number">0</span>, <span class="number">4</span>)</span><br><span class="line">        draw.text([i * width / char_length, h], char, font=font, fill=rndColor())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 写干扰点</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">40</span>):</span><br><span class="line">        draw.point([random.randint(<span class="number">0</span>, width), random.randint(<span class="number">0</span>, height)], fill=rndColor())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 写干扰圆圈</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">40</span>):</span><br><span class="line">        draw.point([random.randint(<span class="number">0</span>, width), random.randint(<span class="number">0</span>, height)], fill=rndColor())</span><br><span class="line">        x = random.randint(<span class="number">0</span>, width)</span><br><span class="line">        y = random.randint(<span class="number">0</span>, height)</span><br><span class="line">        draw.arc((x, y, x + <span class="number">4</span>, y + <span class="number">4</span>), <span class="number">0</span>, <span class="number">90</span>, fill=rndColor())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 画干扰线</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        x1 = random.randint(<span class="number">0</span>, width)</span><br><span class="line">        y1 = random.randint(<span class="number">0</span>, height)</span><br><span class="line">        x2 = random.randint(<span class="number">0</span>, width)</span><br><span class="line">        y2 = random.randint(<span class="number">0</span>, height)</span><br><span class="line"></span><br><span class="line">        draw.line((x1, y1, x2, y2), fill=rndColor())</span><br><span class="line"></span><br><span class="line">    img = img.<span class="built_in">filter</span>(ImageFilter.EDGE_ENHANCE_MORE)</span><br><span class="line">    <span class="keyword">return</span> img, <span class="string">&#x27;&#x27;</span>.join(code)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="4-2-在Django中使用生成随机验证码图片"><a href="#4-2-在Django中使用生成随机验证码图片" class="headerlink" title="4.2 在Django中使用生成随机验证码图片"></a>4.2 在Django中使用生成随机验证码图片</h3><ul>
 <li><p>创建url，创建函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> io <span class="hljs-keyword">import</span> BytesIO  <span class="hljs-comment">#将生成的图片对象保存到内存中</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">image_code</span>(<span class="hljs-params">request</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;生成图片验证码&quot;&quot;&quot;</span><br>    img, code = check_code()<br>    stream = BytesIO()<br>    img.save(stream, <span class="hljs-string">&#x27;png&#x27;</span>)<br>    <span class="hljs-keyword">return</span> HttpResponse(stream.getvalue())<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO  <span class="comment">#将生成的图片对象保存到内存中</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">image_code</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;生成图片验证码&quot;&quot;&quot;</span></span><br><span class="line">    img, code = check_code()</span><br><span class="line">    stream = BytesIO()</span><br><span class="line">    img.save(stream, <span class="string">&#x27;png&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(stream.getvalue())</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在登录页面的html中，将图片验证码出的src地址改为上一步创建的url</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><br>         <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/image/code/&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;yzmimg&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/image/code/&quot;</span> <span class="attr">class</span>=<span class="string">&quot;yzmimg&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>中间件函数中，排除那些而不需要登录就能访问的页面</p>
 </li>
 </ul>
-<p>​	<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/423aabf0ce31c74c4c5769405a044d1a.png" srcset="/img/loading.gif" lazyload alt="image-20231205162507583"></p>
+<p>​	<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/423aabf0ce31c74c4c5769405a044d1a.png" alt="image-20231205162507583"></p>
 <h3 id="4-3-验证输入的验证码是否匹配"><a href="#4-3-验证输入的验证码是否匹配" class="headerlink" title="4.3 验证输入的验证码是否匹配"></a>4.3 验证输入的验证码是否匹配</h3><ul>
 <li><p>使用Form来创建前端验证码的输入框</p>
-<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/fa6b6af2d03393beb292266f70ce6a21.png" srcset="/img/loading.gif" lazyload alt="image-20231205165841082" style="zoom:80%;" />
+<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/fa6b6af2d03393beb292266f70ce6a21.png" alt="image-20231205165841082" style="zoom:80%;" />
 </li>
 <li><p>在登录的函数中做验证</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 验证码校验</span><br>user_input_code = form.cleaned_data.pop(<span class="hljs-string">&#x27;code&#x27;</span>) <span class="hljs-comment"># 前端获取输入的验证码</span><br>real_code = request.session.get(<span class="hljs-string">&#x27;image_code&#x27;</span>,<span class="hljs-string">&#x27;&#x27;</span>)    <span class="hljs-comment"># 真正生成的验证码</span><br><span class="hljs-keyword">if</span> real_code.lower() != user_input_code.lower():	<span class="hljs-comment"># 进行比较判断</span><br>    form.add_error(<span class="hljs-string">&quot;code&quot;</span>, <span class="hljs-string">&quot;验证码错误&quot;</span>)<br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;login.html&quot;</span>, &#123;<span class="hljs-string">&quot;form&quot;</span>: form&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 验证码校验</span></span><br><span class="line">user_input_code = form.cleaned_data.pop(<span class="string">&#x27;code&#x27;</span>) <span class="comment"># 前端获取输入的验证码</span></span><br><span class="line">real_code = request.session.get(<span class="string">&#x27;image_code&#x27;</span>,<span class="string">&#x27;&#x27;</span>)    <span class="comment"># 真正生成的验证码</span></span><br><span class="line"><span class="keyword">if</span> real_code.lower() != user_input_code.lower():	<span class="comment"># 进行比较判断</span></span><br><span class="line">    form.add_error(<span class="string">&quot;code&quot;</span>, <span class="string">&quot;验证码错误&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;login.html&quot;</span>, &#123;<span class="string">&quot;form&quot;</span>: form&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>效果</p>
-<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/99e224787a9efe1eb2c4b7b688eae19c.png" srcset="/img/loading.gif" lazyload alt="image-20231205170032801" style="zoom:80%;" /></li>
+<img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/99e224787a9efe1eb2c4b7b688eae19c.png" alt="image-20231205170032801" style="zoom:80%;" /></li>
 </ul>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Django%E5%AD%A6%E4%B9%A0/" class="category-chain-item">Django学习</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Django/" class="print-no-link">#Django</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>07-项目开发-5_学习day07-用户认证、图片验证</div>
-      <div>https://github.com/Grainup/Grain.github.io.git/2023/12/03/Django/07-项目开发-5-用户认证、图片验证/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Grain</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2023年12月3日</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>更新于</div>
-          <div>2023年12月5日</div>
-        </div>
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/12/04/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/03-%E7%AC%AC%E4%B8%89%E8%8A%82-%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="03-第三节-一些基础的数据结构">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">03-第三节-一些基础的数据结构</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/12/01/%E7%AE%97%E6%B3%95/02-%E4%BD%8D%E8%BF%90%E7%AE%97/" title="02-位运算">
-                        <span class="hidden-mobile">02-位运算</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-  
-  
-    <article id="comments" lazyload>
-      
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"LSqSVShJIOM3stOWccOuIkDq-gzGzoHsz","appKey":"uOUO4aew7hDKmGrHzQQQ2i0E","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-    </article>
-  
-
-
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
-    </div>
-  
-  
-  
-  
-
-  <span id="busuanzi_container_site_uv">
-    本站访客数<span id="busuanzi_value_site_uv"></span>人次
-  </span>
-
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-  
-<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicLine.min.js"></script>
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://github.com/Grainup/Grain.github.io.git">Grain</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://github.com/Grainup/Grain.github.io.git/2023/12/03/Django/07-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-5-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81/">https://github.com/Grainup/Grain.github.io.git/2023/12/03/Django/07-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-5-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://github.com/Grainup/Grain.github.io.git" target="_blank">Grain's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Django/">Django</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/04/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/03-%E7%AC%AC%E4%B8%89%E8%8A%82-%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="03-第三节-一些基础的数据结构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">03-第三节-一些基础的数据结构</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/01/%E7%AE%97%E6%B3%95/02-%E4%BD%8D%E8%BF%90%E7%AE%97/" title="02-位运算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">02-位运算</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/20/Django/01-django%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/" title="01.django_学习day01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-20</div><div class="title">01.django_学习day01</div></div></a></div><div><a href="/2023/11/21/Django/02-orm%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/" title="02-orm数据库连接_学习day02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-21</div><div class="title">02-orm数据库连接_学习day02</div></div></a></div><div><a href="/2023/11/22/Django/03-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-1-%E8%A1%A8%E8%AE%BE%E8%AE%A1/" title="03-项目开发-1_学习day03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-22</div><div class="title">03-项目开发-1_学习day03</div></div></a></div><div><a href="/2023/11/24/Django/04-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-2-ModelForm/" title="04-项目开发-2_学习day04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-24</div><div class="title">04-项目开发-2_学习day04</div></div></a></div><div><a href="/2023/11/29/Django/05-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-3-%E6%A1%88%E4%BE%8B/" title="05-项目开发-3_学习day05"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-29</div><div class="title">05-项目开发-3_学习day05</div></div></a></div><div><a href="/2023/11/30/Django/06-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91-4-%E8%A1%A5%E5%85%85/" title="06-项目开发-4_学习day06"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-30</div><div class="title">06-项目开发-4_学习day06</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Grain</div><div class="author-info__description">记录日常生活</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">用户登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1、用户登录简单实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81"><span class="toc-number">1.2.</span> <span class="toc-text">2、用户登录验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 中间件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%94%A8%E6%88%B7%E6%B3%A8%E9%94%80"><span class="toc-number">1.3.</span> <span class="toc-text">3、用户注销</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">4、图片验证码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%BE%E7%89%87"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 生成验证码图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%9C%A8Django%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%BE%E7%89%87"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 在Django中使用生成随机验证码图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%AA%8C%E8%AF%81%E8%BE%93%E5%85%A5%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E6%98%AF%E5%90%A6%E5%8C%B9%E9%85%8D"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 验证输入的验证码是否匹配</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E7%AE%97%E6%B3%95/%E5%8F%8C%E6%8C%87%E9%92%88/" title="无题">无题</a><time datetime="2024-03-11T10:36:19.262Z" title="发表于 2024-03-11 18:36:19">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%B3%95/" title="无题">无题</a><time datetime="2024-03-11T00:39:57.449Z" title="发表于 2024-03-11 08:39:57">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/02/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/02_jmeter%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="02.jmeter工具使用1">02.jmeter工具使用1</a><time datetime="2024-01-02T01:11:57.454Z" title="发表于 2024-01-02 09:11:57">2024-01-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/15/Django-drf/01-drf%E5%AD%A6%E4%B9%A0_1/" title="01.drf学习day01">01.drf学习day01</a><time datetime="2023-12-15T09:53:21.941Z" title="发表于 2023-12-15 17:53:21">2023-12-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/14/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/01_%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%90%86%E8%AE%BA/" title="01.性能测试的理论">01.性能测试的理论</a><time datetime="2023-12-14T01:45:07.709Z" title="发表于 2023-12-14 09:45:07">2023-12-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Grain</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
