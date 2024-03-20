@@ -1,49 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>01.drf学习day01</title>
-    <url>/2023/12/15/Python/Django-drf/01-drf%E5%AD%A6%E4%B9%A0_1/</url>
-    <content><![CDATA[<h1 id="1、drf初步使用"><a href="#1、drf初步使用" class="headerlink" title="1、drf初步使用"></a>1、drf初步使用</h1><ul>
-<li><p>安装：pip install djangorestframework</p>
-</li>
-<li><p>注册：在settings.py中</p>
-<ul>
-<li><pre><code class="python">INSTALLED_APPS = [
-    &quot;django.contrib.staticfiles&quot;,
-    &quot;app01.apps.App01Config&quot;,
-    &quot;rest_framework&quot;
-]
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">## 1、路由显示</span><br><span class="line"></span><br><span class="line">#### 1-方法一：函数方式</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># urls.py</span><br><span class="line">from django.urls import path</span><br><span class="line">from app01 import views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    # path(&quot;admin/&quot;, admin.site.urls),</span><br><span class="line">    path(&quot;auth/&quot;, views.auth),</span><br><span class="line">    path(&quot;login/&quot;, views.login),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.decorators <span class="keyword">import</span> api_view</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"></span><br><span class="line"><span class="meta">@api_view(<span class="params">[<span class="string">&#x27;GET&#x27;</span>]</span>)	</span><span class="comment"># 需要使用装饰器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> Response(&#123;<span class="string">&quot;status&quot;</span>: <span class="literal">True</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World!&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-方法二：类方式-后续主要使用"><a href="#2-方法二：类方式-后续主要使用" class="headerlink" title="2-方法二：类方式 (后续主要使用)"></a>2-方法二：类方式 (后续主要使用)</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># urls.py</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&quot;info/&quot;</span>, views.InfoView.as_view()),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InfoView</span>(<span class="title class_ inherited__">APIView</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, request</span>):</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&quot;status&quot;</span>: <span class="literal">True</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello view&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、FBV（函数视图）和CBV（类视图）"><a href="#2、FBV（函数视图）和CBV（类视图）" class="headerlink" title="2、FBV（函数视图）和CBV（类视图）"></a>2、FBV（函数视图）和CBV（类视图）</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># urls.py</span></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> app01 <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&quot;auth/&quot;</span>, views.auth),	<span class="comment"># FBV</span></span><br><span class="line">    path(<span class="string">&quot;info/&quot;</span>, views.InfoView.as_view()),	<span class="comment"># CBV</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># views.py</span></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> View</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InfoView</span>(<span class="title class_ inherited__">View</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, request,*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">post</span>(<span class="params">self, request,*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, request,*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete</span>(<span class="params">self, request,*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<div class="note danger flat"><p>在使用drf时，会遇见ContenType错误，解决方法：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在settings.py加入下面语句</span></span><br><span class="line">REST_FRAMEWORK=&#123;</span><br><span class="line">    <span class="string">&quot;UNAUTHENTICATED_USER&quot;</span>: <span class="literal">None</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</div>
-
-<p>​	</p>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>Django-drf</category>
-      </categories>
-      <tags>
-        <tag>Django-drf</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>01.django_学习day01</title>
     <url>/2023/11/20/Python/Django/01-django%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<h1 id="第一个Django项目"><a href="#第一个Django项目" class="headerlink" title="第一个Django项目"></a>第一个Django项目</h1><p>pycharm创建一个Django项目，项目文件目录如下：</p>
@@ -727,6 +684,49 @@
       </tags>
   </entry>
   <entry>
+    <title>01.drf学习day01</title>
+    <url>/2023/12/15/Python/Django-drf/01-drf%E5%AD%A6%E4%B9%A0_1/</url>
+    <content><![CDATA[<h1 id="1、drf初步使用"><a href="#1、drf初步使用" class="headerlink" title="1、drf初步使用"></a>1、drf初步使用</h1><ul>
+<li><p>安装：pip install djangorestframework</p>
+</li>
+<li><p>注册：在settings.py中</p>
+<ul>
+<li><pre><code class="python">INSTALLED_APPS = [
+    &quot;django.contrib.staticfiles&quot;,
+    &quot;app01.apps.App01Config&quot;,
+    &quot;rest_framework&quot;
+]
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">## 1、路由显示</span><br><span class="line"></span><br><span class="line">#### 1-方法一：函数方式</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># urls.py</span><br><span class="line">from django.urls import path</span><br><span class="line">from app01 import views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    # path(&quot;admin/&quot;, admin.site.urls),</span><br><span class="line">    path(&quot;auth/&quot;, views.auth),</span><br><span class="line">    path(&quot;login/&quot;, views.login),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.decorators <span class="keyword">import</span> api_view</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"></span><br><span class="line"><span class="meta">@api_view(<span class="params">[<span class="string">&#x27;GET&#x27;</span>]</span>)	</span><span class="comment"># 需要使用装饰器</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> Response(&#123;<span class="string">&quot;status&quot;</span>: <span class="literal">True</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World!&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-方法二：类方式-后续主要使用"><a href="#2-方法二：类方式-后续主要使用" class="headerlink" title="2-方法二：类方式 (后续主要使用)"></a>2-方法二：类方式 (后续主要使用)</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># urls.py</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&quot;info/&quot;</span>, views.InfoView.as_view()),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InfoView</span>(<span class="title class_ inherited__">APIView</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, request</span>):</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&quot;status&quot;</span>: <span class="literal">True</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello view&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、FBV（函数视图）和CBV（类视图）"><a href="#2、FBV（函数视图）和CBV（类视图）" class="headerlink" title="2、FBV（函数视图）和CBV（类视图）"></a>2、FBV（函数视图）和CBV（类视图）</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># urls.py</span></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> app01 <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&quot;auth/&quot;</span>, views.auth),	<span class="comment"># FBV</span></span><br><span class="line">    path(<span class="string">&quot;info/&quot;</span>, views.InfoView.as_view()),	<span class="comment"># CBV</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># views.py</span></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> View</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">InfoView</span>(<span class="title class_ inherited__">View</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, request,*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">post</span>(<span class="params">self, request,*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, request,*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete</span>(<span class="params">self, request,*args, **kwargs</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<div class="note danger flat"><p>在使用drf时，会遇见ContenType错误，解决方法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在settings.py加入下面语句</span></span><br><span class="line">REST_FRAMEWORK=&#123;</span><br><span class="line">    <span class="string">&quot;UNAUTHENTICATED_USER&quot;</span>: <span class="literal">None</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<p>​	</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>Django-drf</category>
+      </categories>
+      <tags>
+        <tag>Django-drf</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>0.ACM模式输入模板</title>
     <url>/2023/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode%E5%88%B7%E9%A2%98/0-ACM%E6%A8%A1%E5%BC%8F%E8%BE%93%E5%85%A5/</url>
     <content><![CDATA[<h2 id="1、一行输入多个整数"><a href="#1、一行输入多个整数" class="headerlink" title="1、一行输入多个整数"></a>1、一行输入多个整数</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split(<span class="string">&quot; &quot;</span>)))</span><br></pre></td></tr></table></figure>
@@ -1033,6 +1033,139 @@
       </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>01-第一节-认识复杂度、对数器、二分法</title>
+    <url>/2023/11/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/01-%E7%AC%AC%E4%B8%80%E8%8A%82-%E8%AE%A4%E8%AF%86%E5%A4%8D%E6%9D%82%E5%BA%A6%E3%80%81%E5%AF%B9%E6%95%B0%E5%99%A8%E3%80%81%E4%BA%8C%E5%88%86%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="1、认识复杂度"><a href="#1、认识复杂度" class="headerlink" title="1、认识复杂度"></a>1、认识复杂度</h2><p>等差数列求和，最终可以化成<br>$$<br>a<em>N^2+b</em>N+c<br>$$<br>因此，计算时间复杂度时，记作O(N^2)</p>
+<h3 id="常见的常数时间操作O-1"><a href="#常见的常数时间操作O-1" class="headerlink" title="常见的常数时间操作O(1)"></a>常见的常数时间操作O(1)</h3><ul>
+<li>常见的算术运算（+、-、*、&#x2F;、%等）</li>
+<li>常见的位运算（&gt;&gt;、&gt;&gt;&gt;、&lt;&lt;、|、&amp;、^等）</li>
+<li>赋值、比较、自增、自减操作</li>
+<li>数组寻址操作</li>
+</ul>
+<p>计算算法的时间复杂度时，需要将算法步骤拆分到常数时间操作，再去计算。</p>
+<p>当时间复杂度指标相同时，比较两个算法，则使用常数量去分析。可以随机生成数据直接测。</p>
+<h2 id="2、对数器"><a href="#2、对数器" class="headerlink" title="2、对数器"></a>2、对数器</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/a3e1447d698db74e90d7932446ef9bbc.png" alt="image-20231125111749845"></p>
+<p>通过大样本，对比两种方法，如果两种方法都能通过，则算法正确</p>
+<ul>
+<li><p>以测试冒泡算法为例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 冒泡排序,时间复杂度O(N^2)</span></span><br><span class="line"><span class="comment"># 使用对数器来验证算法</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 冒泡排序算法</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bubble_sort</span>(<span class="params">alist</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(alist)</span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        newn = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> alist[i - <span class="number">1</span>] &gt; alist[i]:</span><br><span class="line">                alist[i - <span class="number">1</span>], alist[i] = alist[i], alist[i - <span class="number">1</span>]</span><br><span class="line">                newn = i</span><br><span class="line">        n = newn</span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- 对数器 -----</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">num_test</span>(<span class="params">testTime, maxSize, maxValue</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    testTime：测试次数</span></span><br><span class="line"><span class="string">    maxSize：数据的长度</span></span><br><span class="line"><span class="string">    maxValue：数据的范围</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    succeed = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(testTime):</span><br><span class="line">        arr1 = [random.randint(-maxValue, maxValue) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(maxSize)]</span><br><span class="line">        arr2 = arr1.copy()</span><br><span class="line">        arr3 = arr1.copy()</span><br><span class="line"></span><br><span class="line">        bubble_sort(arr2)</span><br><span class="line">        arr3.sort()</span><br><span class="line">        <span class="keyword">if</span> arr2 != arr3:</span><br><span class="line">            succeed = <span class="literal">False</span></span><br><span class="line">            <span class="built_in">print</span>(arr1)</span><br><span class="line">            <span class="built_in">print</span>(arr2)</span><br><span class="line">            <span class="built_in">print</span>(arr3)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;succeed&quot;</span> <span class="keyword">if</span> succeed <span class="keyword">else</span> <span class="string">&quot;failed&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    num_test(<span class="number">1000</span>, <span class="number">10</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3、二分法"><a href="#3、二分法" class="headerlink" title="3、二分法"></a>3、二分法</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/4fb29acc0a498ca57ca1e2eb65ade871.png" alt="image-20231125111801690"></p>
+<ul>
+<li>二分法取中位数时使用<code> mid = L+(R-L)/2</code>能防止溢出</li>
+<li>一个数<code>N/2 = N &gt;&gt; 1</code>，位移运算比算术运算快</li>
+</ul>
+<blockquote>
+<ul>
+<li><p>right &#x3D; len(nums)-1</p>
+<p>while left &lt;&#x3D; right时：right &#x3D; mid-1	# 左闭右闭区间</p>
+</li>
+<li><p>right &#x3D; len(nums) </p>
+<p>while left &lt; right时：right &#x3D; mid         # 左闭右开区间</p>
+</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>马士兵算法体系班</category>
+      </categories>
+      <tags>
+        <tag>马士兵算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>02-第二节-异或运算相关面试题</title>
+    <url>/2023/11/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/02-%E7%AC%AC%E4%BA%8C%E8%8A%82-%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="1、异或运算"><a href="#1、异或运算" class="headerlink" title="1、异或运算"></a>1、异或运算</h2><ul>
+<li><p>概念：相同为0，不同为1</p>
+<blockquote>
+<p>a&#x3D;7 ^ b&#x3D;13  ——》    00111 ^ 01101 &#x3D; 01010（十进制10）</p>
+</blockquote>
+</li>
+<li><p>0 ^ N &#x3D; N</p>
+</li>
+<li><p>N ^ N &#x3D; 0</p>
+</li>
+<li><p>满足交换律：a ^ b &#x3D; b ^ a</p>
+</li>
+<li><p>满足结合律：(a ^ b) ^ c &#x3D; a ^ (b ^ c)</p>
+</li>
+</ul>
+<h3 id="1-题目一：不添加额外变量下，交换两个变量的值"><a href="#1-题目一：不添加额外变量下，交换两个变量的值" class="headerlink" title="1. 题目一：不添加额外变量下，交换两个变量的值"></a>1. 题目一：不添加额外变量下，交换两个变量的值</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int a = 3，int b = 6</span><br><span class="line">-----操作------</span><br><span class="line">a = a ^ b</span><br><span class="line">b = a ^ b</span><br><span class="line">a = a ^ b	# 这三句代码之后，a和b的值互换</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-题目二：一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数"><a href="#2-题目二：一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数" class="headerlink" title="2. 题目二：一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数"></a>2. 题目二：一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">思路：设一个变量a = 0，然后遍历该数组，每次a = a ^ arr[i]。遍历完以后，a的值就是该数组中出现奇数次的数</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-题目三：怎么把一个int类型的数，提取出最右侧的1来"><a href="#3-题目三：怎么把一个int类型的数，提取出最右侧的1来" class="headerlink" title="3. 题目三：怎么把一个int类型的数，提取出最右侧的1来"></a>3. 题目三：怎么把一个int类型的数，提取出最右侧的1来</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">例：a = 0110 0011 0001 0000  要得到 ans = 0000 0000 0001 0000</span><br><span class="line">思路：a &amp; (-a) 等价于 a &amp; (~a + 1)  ~表示取反</span><br><span class="line">知识点：1）二进制中，a的相反数 等于 a取反+1</span><br><span class="line">	  2）与运算：两者同时为1，结果为1，否则为0</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数"><a href="#4-一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数" class="headerlink" title="4. 一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数"></a>4. 一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">find_two_numbers</span>(<span class="params">arr</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt; <span class="number">2</span>:    <span class="comment"># 1.处理边界值</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    xor_result = <span class="number">0</span>      <span class="comment"># 2.设置一个变量来遍历异或</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        xor_result ^= i</span><br><span class="line">    <span class="comment"># 3.因为两个奇数次数a和b是两种数，所以遍历完以后xor_result = a ^ b,且xor_result != 0</span></span><br><span class="line">    <span class="comment">#   因为a和b是不同的数 所以异或结果一定存在某一位上为1，则a和b在该位置一定是分别为1和0.</span></span><br><span class="line">    <span class="comment"># 4.然后找到xor_result最右边的1</span></span><br><span class="line">    right_most_one = xor_result &amp; (-xor_result)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 现在用两个变量再去遍历异或，这就分为了两组，一组是该位置为1，另一组是为0，遍历完就能提取出这两个数。</span></span><br><span class="line">    num1 = <span class="number">0</span></span><br><span class="line">    num2 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">if</span> (i &amp; right_most_one) == <span class="number">0</span>:</span><br><span class="line">            num1 ^= i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            num2 ^= i</span><br><span class="line">    <span class="built_in">print</span>(num1, num2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    arr = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">7</span>]</span><br><span class="line">    find_two_numbers(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-一个数组中有一种数出现K次，其他数都出现M次，且M-1-K"><a href="#5-一个数组中有一种数出现K次，其他数都出现M次，且M-1-K" class="headerlink" title="5. 一个数组中有一种数出现K次，其他数都出现M次，且M&gt;1,K&lt;M。请找到出现K次的数，要求额外空间复杂的为O(1)，时间复杂度O(N)"></a>5. 一个数组中有一种数出现K次，其他数都出现M次，且M&gt;1,K&lt;M。请找到出现K次的数，要求额外空间复杂的为O(1)，时间复杂度O(N)</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 05题 一个数组中有一种数出现K次，其他数都出现M次，且M&gt;1,K&lt;M。请找到出现K次的数，要求额外空间复杂的为O(1)，时间复杂度O(N)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_k_times</span>(<span class="params">arr, k, m</span>):</span><br><span class="line">    t = [<span class="number">0</span>]*<span class="number">32</span></span><br><span class="line">    <span class="comment"># t[0]表示 0位置的1出现了几次</span></span><br><span class="line">    <span class="comment"># t[1]表示 1位置的1出现了几次</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line">            <span class="keyword">if</span> (i &gt;&gt; j) &amp; <span class="number">1</span>:    <span class="comment"># 如果i的第j位为1，则&amp;1 结果为1</span></span><br><span class="line">                t[j] += <span class="number">1</span>       <span class="comment"># 那么在该j位置上计数+1</span></span><br><span class="line">    ans = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line">        <span class="keyword">if</span> t[i] % m:   <span class="comment"># 如果t[i] % m != 0，则表示在该位置上为1的的数量不是m的整数倍，还包含k次出现的数</span></span><br><span class="line">            ans |= (<span class="number">1</span> &lt;&lt; i)  <span class="comment"># i位置有1的就 &#x27;或&#x27;，为0就不变，因此遍历完以后，ans就是出现k次的数</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Hash_test</span>(<span class="params">arr, k, m</span>):  <span class="comment"># 另一种方法，哈希表法，来验证上面方法的正确性</span></span><br><span class="line">    counts = <span class="built_in">dict</span>()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> counts:</span><br><span class="line">            counts[i] = counts.get(i) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            counts[i] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> counts.keys():</span><br><span class="line">        <span class="keyword">if</span> counts.get(i) == k:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ========= 接下来使用对数器来验证 =========</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_random_array</span>(<span class="params">max_kinds, max_value, k, m</span>):</span><br><span class="line">    k_num = random.randint(-max_value, max_value)  <span class="comment"># k次数</span></span><br><span class="line">    numKinds = random.randint(<span class="number">2</span>, max_kinds)  <span class="comment"># 数组中数的种类</span></span><br><span class="line">    len_arr = k + m * (numKinds-<span class="number">1</span>)  <span class="comment"># 数组长度</span></span><br><span class="line">    arr = [<span class="number">0</span>]*len_arr</span><br><span class="line"></span><br><span class="line">    i_num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):  <span class="comment"># 将k次数放入数组</span></span><br><span class="line">        arr[i] = k_num</span><br><span class="line">        i_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    numKinds -= <span class="number">1</span>   <span class="comment"># 减去k次数的种类</span></span><br><span class="line">    a_set = <span class="built_in">set</span>()</span><br><span class="line">    a_set.add(k_num)    <span class="comment"># 将k次数放入集合</span></span><br><span class="line">    <span class="keyword">while</span> numKinds:</span><br><span class="line">        <span class="comment">#  构造出现m次的数，并且无重复</span></span><br><span class="line">        curNum = random.randint(-max_value, max_value)</span><br><span class="line">        <span class="keyword">while</span> curNum <span class="keyword">in</span> a_set:  <span class="comment"># 如果curNum在集合中，则重新生成</span></span><br><span class="line">            curNum = random.randint(-max_value, max_value)</span><br><span class="line">        a_set.add(curNum)   <span class="comment"># 将出现m次的数放入集合</span></span><br><span class="line"></span><br><span class="line">        numKinds -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            arr[i_num] = curNum</span><br><span class="line">            i_num += <span class="number">1</span></span><br><span class="line">    random.shuffle(arr)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    max_kinds = <span class="number">4</span>  <span class="comment"># 数组的最大种类</span></span><br><span class="line">    max_range = <span class="number">200</span>  <span class="comment"># 数组中的元素取值范围为[-max_range, max_range]</span></span><br><span class="line">    testTimes = <span class="number">10000</span>  <span class="comment"># 测试次数</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;测试开始&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(testTimes):</span><br><span class="line">        <span class="comment"># 构造 k 和 m</span></span><br><span class="line">        a = random.randint(<span class="number">1</span>, <span class="number">10</span>)   <span class="comment"># 随机生成1-9的数</span></span><br><span class="line">        b = random.randint(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">        k = <span class="built_in">min</span>(a, b)</span><br><span class="line">        m = <span class="built_in">max</span>(a, b)</span><br><span class="line">        <span class="keyword">if</span> k == m:</span><br><span class="line">            m += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 构造arr</span></span><br><span class="line">        arr = generate_random_array(max_kinds, max_range, k, m)</span><br><span class="line">        <span class="comment"># print(arr)</span></span><br><span class="line">        <span class="comment"># 测试</span></span><br><span class="line">        ans1 = Hash_test(arr, k, m)</span><br><span class="line">        ans2 = find_k_times(arr, k, m)</span><br><span class="line">        ans3 = ans1 &amp; <span class="number">0xffffffff</span>    <span class="comment"># 将32位整数ans1转换为无符号整数，以便比较</span></span><br><span class="line">        <span class="keyword">if</span> ans3 != ans2:</span><br><span class="line">            <span class="built_in">print</span>(arr)</span><br><span class="line">            <span class="built_in">print</span>(ans1, ans2, ans3)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;出错了!&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;测试结束&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>马士兵算法体系班</category>
+      </categories>
+      <tags>
+        <tag>马士兵算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>03-第三节-一些基础的数据结构</title>
+    <url>/2023/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/03-%E7%AC%AC%E4%B8%89%E8%8A%82-%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h2 id="1、链表"><a href="#1、链表" class="headerlink" title="1、链表"></a>1、链表</h2><ul>
+<li>题型<ul>
+<li>单链表或双链表的翻转</li>
+<li>删除某些给定的值</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、栈和队列"><a href="#2、栈和队列" class="headerlink" title="2、栈和队列"></a>2、栈和队列</h2><ul>
+<li><p>题型</p>
+<ul>
+<li>双向链表或数组来实现栈和队列</li>
+</ul>
+</li>
+<li><p>常见面试题</p>
+<ul>
+<li><p>实现一个特殊的栈，在基本功能的基础上，再实现返回栈中自小元素的功能</p>
+<ul>
+<li>pop、push、getMin操作的时间复杂度都是O(1)</li>
+<li>设计的栈类型可以使用现成的栈结构</li>
+</ul>
+</li>
+<li><p>如何用栈实现队列（两个栈：push栈和pop栈）</p>
+<ul>
+<li>push栈要一次性倒入到pop栈中</li>
+<li>pop栈中如果有元素，则push栈中无法加入元素</li>
+</ul>
+</li>
+<li><p>如何用队列实现栈结构（两个队列来回倒）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3、递归"><a href="#3、递归" class="headerlink" title="3、递归"></a>3、递归</h2><p>任何递归行为一定可以改为迭代行为。</p>
+<ul>
+<li>递归何时结束</li>
+<li>把调用的过程画出结构图是必须的，有利于分析递归</li>
+</ul>
+<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/77f69a82bffb9a3a57d7b08c3a24c34c.png" alt="image-20231204153341042"></p>
+<ul>
+<li><strong>Master公式可以估算递归的时间复杂度</strong> ，条件：递归的子问题复杂度一致。上面公式中log(b,a) 表示log以b为底</li>
+</ul>
+<h2 id="4、哈希表"><a href="#4、哈希表" class="headerlink" title="4、哈希表"></a>4、哈希表</h2><p>哈希表增、删、查，时间复杂度为常数类型</p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>马士兵算法体系班</category>
+      </categories>
+      <tags>
+        <tag>马士兵算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1507,139 +1640,6 @@
       </categories>
       <tags>
         <tag>面经</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>01-第一节-认识复杂度、对数器、二分法</title>
-    <url>/2023/11/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/01-%E7%AC%AC%E4%B8%80%E8%8A%82-%E8%AE%A4%E8%AF%86%E5%A4%8D%E6%9D%82%E5%BA%A6%E3%80%81%E5%AF%B9%E6%95%B0%E5%99%A8%E3%80%81%E4%BA%8C%E5%88%86%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="1、认识复杂度"><a href="#1、认识复杂度" class="headerlink" title="1、认识复杂度"></a>1、认识复杂度</h2><p>等差数列求和，最终可以化成<br>$$<br>a<em>N^2+b</em>N+c<br>$$<br>因此，计算时间复杂度时，记作O(N^2)</p>
-<h3 id="常见的常数时间操作O-1"><a href="#常见的常数时间操作O-1" class="headerlink" title="常见的常数时间操作O(1)"></a>常见的常数时间操作O(1)</h3><ul>
-<li>常见的算术运算（+、-、*、&#x2F;、%等）</li>
-<li>常见的位运算（&gt;&gt;、&gt;&gt;&gt;、&lt;&lt;、|、&amp;、^等）</li>
-<li>赋值、比较、自增、自减操作</li>
-<li>数组寻址操作</li>
-</ul>
-<p>计算算法的时间复杂度时，需要将算法步骤拆分到常数时间操作，再去计算。</p>
-<p>当时间复杂度指标相同时，比较两个算法，则使用常数量去分析。可以随机生成数据直接测。</p>
-<h2 id="2、对数器"><a href="#2、对数器" class="headerlink" title="2、对数器"></a>2、对数器</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/a3e1447d698db74e90d7932446ef9bbc.png" alt="image-20231125111749845"></p>
-<p>通过大样本，对比两种方法，如果两种方法都能通过，则算法正确</p>
-<ul>
-<li><p>以测试冒泡算法为例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 冒泡排序,时间复杂度O(N^2)</span></span><br><span class="line"><span class="comment"># 使用对数器来验证算法</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 冒泡排序算法</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bubble_sort</span>(<span class="params">alist</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(alist)</span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        newn = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> alist[i - <span class="number">1</span>] &gt; alist[i]:</span><br><span class="line">                alist[i - <span class="number">1</span>], alist[i] = alist[i], alist[i - <span class="number">1</span>]</span><br><span class="line">                newn = i</span><br><span class="line">        n = newn</span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- 对数器 -----</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">num_test</span>(<span class="params">testTime, maxSize, maxValue</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    testTime：测试次数</span></span><br><span class="line"><span class="string">    maxSize：数据的长度</span></span><br><span class="line"><span class="string">    maxValue：数据的范围</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    succeed = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(testTime):</span><br><span class="line">        arr1 = [random.randint(-maxValue, maxValue) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(maxSize)]</span><br><span class="line">        arr2 = arr1.copy()</span><br><span class="line">        arr3 = arr1.copy()</span><br><span class="line"></span><br><span class="line">        bubble_sort(arr2)</span><br><span class="line">        arr3.sort()</span><br><span class="line">        <span class="keyword">if</span> arr2 != arr3:</span><br><span class="line">            succeed = <span class="literal">False</span></span><br><span class="line">            <span class="built_in">print</span>(arr1)</span><br><span class="line">            <span class="built_in">print</span>(arr2)</span><br><span class="line">            <span class="built_in">print</span>(arr3)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;succeed&quot;</span> <span class="keyword">if</span> succeed <span class="keyword">else</span> <span class="string">&quot;failed&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    num_test(<span class="number">1000</span>, <span class="number">10</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="3、二分法"><a href="#3、二分法" class="headerlink" title="3、二分法"></a>3、二分法</h2><p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/11/4fb29acc0a498ca57ca1e2eb65ade871.png" alt="image-20231125111801690"></p>
-<ul>
-<li>二分法取中位数时使用<code> mid = L+(R-L)/2</code>能防止溢出</li>
-<li>一个数<code>N/2 = N &gt;&gt; 1</code>，位移运算比算术运算快</li>
-</ul>
-<blockquote>
-<ul>
-<li><p>right &#x3D; len(nums)-1</p>
-<p>while left &lt;&#x3D; right时：right &#x3D; mid-1	# 左闭右闭区间</p>
-</li>
-<li><p>right &#x3D; len(nums) </p>
-<p>while left &lt; right时：right &#x3D; mid         # 左闭右开区间</p>
-</li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-        <category>马士兵算法体系班</category>
-      </categories>
-      <tags>
-        <tag>马士兵算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>02-第二节-异或运算相关面试题</title>
-    <url>/2023/11/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/02-%E7%AC%AC%E4%BA%8C%E8%8A%82-%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="1、异或运算"><a href="#1、异或运算" class="headerlink" title="1、异或运算"></a>1、异或运算</h2><ul>
-<li><p>概念：相同为0，不同为1</p>
-<blockquote>
-<p>a&#x3D;7 ^ b&#x3D;13  ——》    00111 ^ 01101 &#x3D; 01010（十进制10）</p>
-</blockquote>
-</li>
-<li><p>0 ^ N &#x3D; N</p>
-</li>
-<li><p>N ^ N &#x3D; 0</p>
-</li>
-<li><p>满足交换律：a ^ b &#x3D; b ^ a</p>
-</li>
-<li><p>满足结合律：(a ^ b) ^ c &#x3D; a ^ (b ^ c)</p>
-</li>
-</ul>
-<h3 id="1-题目一：不添加额外变量下，交换两个变量的值"><a href="#1-题目一：不添加额外变量下，交换两个变量的值" class="headerlink" title="1. 题目一：不添加额外变量下，交换两个变量的值"></a>1. 题目一：不添加额外变量下，交换两个变量的值</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int a = 3，int b = 6</span><br><span class="line">-----操作------</span><br><span class="line">a = a ^ b</span><br><span class="line">b = a ^ b</span><br><span class="line">a = a ^ b	# 这三句代码之后，a和b的值互换</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-题目二：一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数"><a href="#2-题目二：一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数" class="headerlink" title="2. 题目二：一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数"></a>2. 题目二：一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">思路：设一个变量a = 0，然后遍历该数组，每次a = a ^ arr[i]。遍历完以后，a的值就是该数组中出现奇数次的数</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-题目三：怎么把一个int类型的数，提取出最右侧的1来"><a href="#3-题目三：怎么把一个int类型的数，提取出最右侧的1来" class="headerlink" title="3. 题目三：怎么把一个int类型的数，提取出最右侧的1来"></a>3. 题目三：怎么把一个int类型的数，提取出最右侧的1来</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">例：a = 0110 0011 0001 0000  要得到 ans = 0000 0000 0001 0000</span><br><span class="line">思路：a &amp; (-a) 等价于 a &amp; (~a + 1)  ~表示取反</span><br><span class="line">知识点：1）二进制中，a的相反数 等于 a取反+1</span><br><span class="line">	  2）与运算：两者同时为1，结果为1，否则为0</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数"><a href="#4-一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数" class="headerlink" title="4. 一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数"></a>4. 一个数组中有两种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两种数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">find_two_numbers</span>(<span class="params">arr</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(arr) &lt; <span class="number">2</span>:    <span class="comment"># 1.处理边界值</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    xor_result = <span class="number">0</span>      <span class="comment"># 2.设置一个变量来遍历异或</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        xor_result ^= i</span><br><span class="line">    <span class="comment"># 3.因为两个奇数次数a和b是两种数，所以遍历完以后xor_result = a ^ b,且xor_result != 0</span></span><br><span class="line">    <span class="comment">#   因为a和b是不同的数 所以异或结果一定存在某一位上为1，则a和b在该位置一定是分别为1和0.</span></span><br><span class="line">    <span class="comment"># 4.然后找到xor_result最右边的1</span></span><br><span class="line">    right_most_one = xor_result &amp; (-xor_result)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 现在用两个变量再去遍历异或，这就分为了两组，一组是该位置为1，另一组是为0，遍历完就能提取出这两个数。</span></span><br><span class="line">    num1 = <span class="number">0</span></span><br><span class="line">    num2 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">if</span> (i &amp; right_most_one) == <span class="number">0</span>:</span><br><span class="line">            num1 ^= i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            num2 ^= i</span><br><span class="line">    <span class="built_in">print</span>(num1, num2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    arr = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">7</span>]</span><br><span class="line">    find_two_numbers(arr)</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-一个数组中有一种数出现K次，其他数都出现M次，且M-1-K"><a href="#5-一个数组中有一种数出现K次，其他数都出现M次，且M-1-K" class="headerlink" title="5. 一个数组中有一种数出现K次，其他数都出现M次，且M&gt;1,K&lt;M。请找到出现K次的数，要求额外空间复杂的为O(1)，时间复杂度O(N)"></a>5. 一个数组中有一种数出现K次，其他数都出现M次，且M&gt;1,K&lt;M。请找到出现K次的数，要求额外空间复杂的为O(1)，时间复杂度O(N)</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 05题 一个数组中有一种数出现K次，其他数都出现M次，且M&gt;1,K&lt;M。请找到出现K次的数，要求额外空间复杂的为O(1)，时间复杂度O(N)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_k_times</span>(<span class="params">arr, k, m</span>):</span><br><span class="line">    t = [<span class="number">0</span>]*<span class="number">32</span></span><br><span class="line">    <span class="comment"># t[0]表示 0位置的1出现了几次</span></span><br><span class="line">    <span class="comment"># t[1]表示 1位置的1出现了几次</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line">            <span class="keyword">if</span> (i &gt;&gt; j) &amp; <span class="number">1</span>:    <span class="comment"># 如果i的第j位为1，则&amp;1 结果为1</span></span><br><span class="line">                t[j] += <span class="number">1</span>       <span class="comment"># 那么在该j位置上计数+1</span></span><br><span class="line">    ans = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line">        <span class="keyword">if</span> t[i] % m:   <span class="comment"># 如果t[i] % m != 0，则表示在该位置上为1的的数量不是m的整数倍，还包含k次出现的数</span></span><br><span class="line">            ans |= (<span class="number">1</span> &lt;&lt; i)  <span class="comment"># i位置有1的就 &#x27;或&#x27;，为0就不变，因此遍历完以后，ans就是出现k次的数</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Hash_test</span>(<span class="params">arr, k, m</span>):  <span class="comment"># 另一种方法，哈希表法，来验证上面方法的正确性</span></span><br><span class="line">    counts = <span class="built_in">dict</span>()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> counts:</span><br><span class="line">            counts[i] = counts.get(i) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            counts[i] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> counts.keys():</span><br><span class="line">        <span class="keyword">if</span> counts.get(i) == k:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ========= 接下来使用对数器来验证 =========</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_random_array</span>(<span class="params">max_kinds, max_value, k, m</span>):</span><br><span class="line">    k_num = random.randint(-max_value, max_value)  <span class="comment"># k次数</span></span><br><span class="line">    numKinds = random.randint(<span class="number">2</span>, max_kinds)  <span class="comment"># 数组中数的种类</span></span><br><span class="line">    len_arr = k + m * (numKinds-<span class="number">1</span>)  <span class="comment"># 数组长度</span></span><br><span class="line">    arr = [<span class="number">0</span>]*len_arr</span><br><span class="line"></span><br><span class="line">    i_num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):  <span class="comment"># 将k次数放入数组</span></span><br><span class="line">        arr[i] = k_num</span><br><span class="line">        i_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    numKinds -= <span class="number">1</span>   <span class="comment"># 减去k次数的种类</span></span><br><span class="line">    a_set = <span class="built_in">set</span>()</span><br><span class="line">    a_set.add(k_num)    <span class="comment"># 将k次数放入集合</span></span><br><span class="line">    <span class="keyword">while</span> numKinds:</span><br><span class="line">        <span class="comment">#  构造出现m次的数，并且无重复</span></span><br><span class="line">        curNum = random.randint(-max_value, max_value)</span><br><span class="line">        <span class="keyword">while</span> curNum <span class="keyword">in</span> a_set:  <span class="comment"># 如果curNum在集合中，则重新生成</span></span><br><span class="line">            curNum = random.randint(-max_value, max_value)</span><br><span class="line">        a_set.add(curNum)   <span class="comment"># 将出现m次的数放入集合</span></span><br><span class="line"></span><br><span class="line">        numKinds -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            arr[i_num] = curNum</span><br><span class="line">            i_num += <span class="number">1</span></span><br><span class="line">    random.shuffle(arr)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    max_kinds = <span class="number">4</span>  <span class="comment"># 数组的最大种类</span></span><br><span class="line">    max_range = <span class="number">200</span>  <span class="comment"># 数组中的元素取值范围为[-max_range, max_range]</span></span><br><span class="line">    testTimes = <span class="number">10000</span>  <span class="comment"># 测试次数</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;测试开始&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(testTimes):</span><br><span class="line">        <span class="comment"># 构造 k 和 m</span></span><br><span class="line">        a = random.randint(<span class="number">1</span>, <span class="number">10</span>)   <span class="comment"># 随机生成1-9的数</span></span><br><span class="line">        b = random.randint(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">        k = <span class="built_in">min</span>(a, b)</span><br><span class="line">        m = <span class="built_in">max</span>(a, b)</span><br><span class="line">        <span class="keyword">if</span> k == m:</span><br><span class="line">            m += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 构造arr</span></span><br><span class="line">        arr = generate_random_array(max_kinds, max_range, k, m)</span><br><span class="line">        <span class="comment"># print(arr)</span></span><br><span class="line">        <span class="comment"># 测试</span></span><br><span class="line">        ans1 = Hash_test(arr, k, m)</span><br><span class="line">        ans2 = find_k_times(arr, k, m)</span><br><span class="line">        ans3 = ans1 &amp; <span class="number">0xffffffff</span>    <span class="comment"># 将32位整数ans1转换为无符号整数，以便比较</span></span><br><span class="line">        <span class="keyword">if</span> ans3 != ans2:</span><br><span class="line">            <span class="built_in">print</span>(arr)</span><br><span class="line">            <span class="built_in">print</span>(ans1, ans2, ans3)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;出错了!&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;测试结束&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-        <category>马士兵算法体系班</category>
-      </categories>
-      <tags>
-        <tag>马士兵算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>03-第三节-一些基础的数据结构</title>
-    <url>/2023/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%A9%AC%E5%A3%AB%E5%85%B5%E7%AE%97%E6%B3%95%E4%BD%93%E7%B3%BB%E7%8F%AD/03-%E7%AC%AC%E4%B8%89%E8%8A%82-%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h2 id="1、链表"><a href="#1、链表" class="headerlink" title="1、链表"></a>1、链表</h2><ul>
-<li>题型<ul>
-<li>单链表或双链表的翻转</li>
-<li>删除某些给定的值</li>
-</ul>
-</li>
-</ul>
-<h2 id="2、栈和队列"><a href="#2、栈和队列" class="headerlink" title="2、栈和队列"></a>2、栈和队列</h2><ul>
-<li><p>题型</p>
-<ul>
-<li>双向链表或数组来实现栈和队列</li>
-</ul>
-</li>
-<li><p>常见面试题</p>
-<ul>
-<li><p>实现一个特殊的栈，在基本功能的基础上，再实现返回栈中自小元素的功能</p>
-<ul>
-<li>pop、push、getMin操作的时间复杂度都是O(1)</li>
-<li>设计的栈类型可以使用现成的栈结构</li>
-</ul>
-</li>
-<li><p>如何用栈实现队列（两个栈：push栈和pop栈）</p>
-<ul>
-<li>push栈要一次性倒入到pop栈中</li>
-<li>pop栈中如果有元素，则push栈中无法加入元素</li>
-</ul>
-</li>
-<li><p>如何用队列实现栈结构（两个队列来回倒）</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="3、递归"><a href="#3、递归" class="headerlink" title="3、递归"></a>3、递归</h2><p>任何递归行为一定可以改为迭代行为。</p>
-<ul>
-<li>递归何时结束</li>
-<li>把调用的过程画出结构图是必须的，有利于分析递归</li>
-</ul>
-<p><img src="https://pub-81a2ad723f3e4d99be8db0e68d1903d2.r2.dev/2023/12/77f69a82bffb9a3a57d7b08c3a24c34c.png" alt="image-20231204153341042"></p>
-<ul>
-<li><strong>Master公式可以估算递归的时间复杂度</strong> ，条件：递归的子问题复杂度一致。上面公式中log(b,a) 表示log以b为底</li>
-</ul>
-<h2 id="4、哈希表"><a href="#4、哈希表" class="headerlink" title="4、哈希表"></a>4、哈希表</h2><p>哈希表增、删、查，时间复杂度为常数类型</p>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-        <category>马士兵算法体系班</category>
-      </categories>
-      <tags>
-        <tag>马士兵算法</tag>
       </tags>
   </entry>
 </search>
